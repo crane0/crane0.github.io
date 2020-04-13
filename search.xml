@@ -23,8 +23,9 @@
   </entry>
   <entry>
     <title>test_my_site</title>
-    <url>/2020/04/13/test-my-site/</url>
-    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1>]]></content>
+    <url>/2020/04/11/test-my-site/</url>
+    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
+]]></content>
       <categories>
         <category>web前端</category>
       </categories>
