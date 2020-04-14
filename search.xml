@@ -1,25 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>中文标题</title>
-    <url>/2020/04/14/ch/</url>
-    <content><![CDATA[<h2 id="这是中文标题"><a href="#这是中文标题" class="headerlink" title="这是中文标题"></a>这是中文标题</h2><p>这是是摘要1，</p>
-<p>官方公告：auto_excerpt 可以自动截断文章内容作为摘要。此功能不是一个 Hexo 主题应当负责的，这为主题的维护者带来了太大压力。自 7.6.0 版本开始，此功能被移除，请自行安装第三方插件，或阅读 Hexo 有关文档。当然，我们仍然建议通过，<code>&lt;!-- more --&gt;</code>来精确控制 Read More 的位置。</p>
-<a id="more"></a>
-
-
-<p>这是正文</p>
-<figure class="highlight html"><figcaption><span>themes/index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const a =  '123'</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ const b = 'add'</span></span><br><span class="line"><span class="deletion">- const c = 'minus'</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>hello</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2020/04/13/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
@@ -38,9 +24,302 @@
       </tags>
   </entry>
   <entry>
+    <title>hexo+next建站1</title>
+    <url>/2020/04/14/hexo-next%E5%BB%BA%E7%AB%991/</url>
+    <content><![CDATA[<p>hexo+next建站第1部分</p>
+<a id="more"></a>
+
+<p><a href="https://zhuanlan.zhihu.com/p/26625249" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/26625249</a></p>
+<p>使用了 next 主题</p>
+<p>下面的命令安装的是最新版本的 v7.x 的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
+<p>如果之前使用的是 v5.x 的，可以将后面的 <code>themes/next</code> 改为 <code>next-reloaded</code>，其实随便一个名字，然后在站点的配置项中修改主题名称即可。</p>
+<h1 id="1，next-主题的配置"><a href="#1，next-主题的配置" class="headerlink" title="1，next 主题的配置"></a>1，next 主题的配置</h1><h2 id="1-1，启用本地搜索"><a href="#1-1，启用本地搜索" class="headerlink" title="1.1，启用本地搜索"></a>1.1，启用本地搜索</h2><p>1，下载依赖</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-generator-searchdb --save</span><br></pre></td></tr></table></figure>
+
+<p>2，在 <code>themes/next-reloaded/_config.yml</code> 中，搜索 <code>local_search</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+<p>完成配置</p>
+<blockquote>
+<p>还需配图</p>
+</blockquote>
+<h2 id="1-2，修改主题的风格"><a href="#1-2，修改主题的风格" class="headerlink" title="1.2，修改主题的风格"></a>1.2，修改主题的风格</h2><p>在 <code>themes/next-reloaded/_config.yml</code> 中，搜索 <code>Schemes</code>，有4中可以选择，我使用的</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">scheme: Mist</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3，启用阅读量计数"><a href="#1-3，启用阅读量计数" class="headerlink" title="1.3，启用阅读量计数"></a>1.3，启用阅读量计数</h2><blockquote>
+<p>下面的方法，在本地测试环境，显示的统计有问题，不用管。部署后显示就正常了。</p>
+</blockquote>
+<p>在 <code>themes/next-reloaded/_config.yml</code> 中，搜索<code>busuanzi_count</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enable: true</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="1-4，添加关于，分类，标签的导航栏"><a href="#1-4，添加关于，分类，标签的导航栏" class="headerlink" title="1.4，添加关于，分类，标签的导航栏"></a>1.4，添加关于，分类，标签的导航栏</h2><p>1，运行以下命令添加页面，会在 <code>source</code> 文件夹下分别创建3个文件夹，对应的有 <code>index.md</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page about</span><br><span class="line">hexo new page categories</span><br><span class="line">hexo new page tags</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>页面生成后，默认会在侧边栏中展示出「分类」和 「标签」，但是无法点击。</p>
+</blockquote>
+<p>2，对于「关于」，可以直接在 <code>index.md</code> 中写内容即可。其他不用配置。</p>
+<p>3，对于「分类」和 「标签」，需要再加一个 type 的配置，和 <code>title</code> 保持一致即可。</p>
+<blockquote>
+<p>如果没有 type 的配置，侧边栏的点击无效，对应的页面虽然会展示，但不会有内容。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: categories</span><br><span class="line">date: 2020-04-13 17:46:28</span><br><span class="line">type: categories</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: tags</span><br><span class="line">date: 2020-04-13 18:07:52</span><br><span class="line">type: tags</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<p>4，在主题的配置 <code>themes/next/_config.yml</code>中，搜索 <code>menu</code>，将对应的注释打开即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F; || fa fa-home</span><br><span class="line">  about: &#x2F;about&#x2F; || fa fa-user</span><br><span class="line">  tags: &#x2F;tags&#x2F; || fa fa-tags</span><br><span class="line">  categories: &#x2F;categories&#x2F; || fa fa-th</span><br><span class="line">  archives: &#x2F;archives&#x2F; || fa fa-archive</span><br></pre></td></tr></table></figure>
+
+<p>配置完成。</p>
+<h2 id="1-5，页面动画效果"><a href="#1-5，页面动画效果" class="headerlink" title="1.5，页面动画效果"></a>1.5，页面动画效果</h2><p>1，在 <code>themes/next/_config.yml</code> 中 搜索 <code>motion</code>，</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">enable: false</span><br></pre></td></tr></table></figure>
+
+<p>即可关闭所有动画，但其实动画是为了留点时间加载资源，完全禁止掉也不太好。</p>
+<p>2，第2种方式，修改主题的源码。</p>
+<p>在 <code>themes/next/source/js/motion.js</code>（低版本的不一定是 <code>motion.js</code>），应该也是类似的名称。。。</p>
+<p>修改这个函数中的 <code>duration</code> 为 0，个人觉得是比较舒服的。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function getMistLineSettings(element, translateX) &#123;</span><br><span class="line">  return &#123;</span><br><span class="line">    e: element,</span><br><span class="line">    p: &#123;translateX&#125;,</span><br><span class="line">    o: &#123;</span><br><span class="line">      duration     : 0,</span><br><span class="line">      sequenceQueue: false</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其他的动画时间，可以在这个文件中搜索 <code>duration</code> 找到对应的更改即可。</p>
+<h2 id="1-6，打赏功能"><a href="#1-6，打赏功能" class="headerlink" title="1.6，打赏功能"></a>1.6，打赏功能</h2><p>开启后，每篇文章下会有一个「打赏」按钮，点击后都会有支付二维码。</p>
+<p>在主题配置中，搜索 <code>reward_settings</code>，<code>enable</code> 设置为 true 后就开启了。</p>
+<p><code>reward</code> 对应的是二维码图片。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">reward_settings:</span><br><span class="line">  enable: true</span><br><span class="line">  animation: false</span><br><span class="line">  comment: 这是捐赠说明语</span><br><span class="line"></span><br><span class="line">reward:</span><br><span class="line">  wechatpay: &#x2F;images&#x2F;avatar.gif</span><br><span class="line">  alipay: &#x2F;images&#x2F;avatar.jpg</span><br><span class="line">  #paypal: &#x2F;images&#x2F;paypal.png</span><br><span class="line">  #bitcoin: &#x2F;images&#x2F;bitcoin.png</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-7，文章更新时间"><a href="#1-7，文章更新时间" class="headerlink" title="1.7，文章更新时间"></a>1.7，文章更新时间</h2><p>在主题配置中，搜索 <code>post_meta</code>，<code>updated_at</code> 就是更新时间的配置，可以看到默认是开启的，但还需要其他的配置。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">post_meta:</span><br><span class="line">  item_text: true</span><br><span class="line">  created_at: true</span><br><span class="line">  updated_at:</span><br><span class="line">    enable: true</span><br><span class="line">    another_day: true</span><br><span class="line">  categories: true</span><br></pre></td></tr></table></figure>
+<p>在文章的 markdown 文件中，添加 <code>modified</code> 字段即可。</p>
+<p>还要注意一点，只有当文章内容改变时，才会生效。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: test_my_site</span><br><span class="line">date: 2020-04-11 15:25:05</span><br><span class="line">modified: 2020-04-12 20:20:56</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-8，滚动条显示百分比"><a href="#1-8，滚动条显示百分比" class="headerlink" title="1.8，滚动条显示百分比"></a>1.8，滚动条显示百分比</h2><blockquote>
+<p>这个之后会被顶部的进度条取代。不设置这个了</p>
+</blockquote>
+<p>在主题配置中，搜索 <code>back2top</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">back2top</span><br><span class="line">  scrollpercent: false</span><br></pre></td></tr></table></figure>
+]]></content>
+      <tags>
+        <tag>hexo+next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo_next建站2</title>
+    <url>/2020/04/14/hexo-next%E5%BB%BA%E7%AB%992/</url>
+    <content><![CDATA[<p>hexo+next建站第2部分</p>
+<a id="more"></a>
+
+<h1 id="站点概览"><a href="#站点概览" class="headerlink" title="站点概览"></a>站点概览</h1><h2 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h2><p>在主题配置中，搜索 <code>avatar</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.jpg</span><br><span class="line">  rounded: true</span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+
+<h2 id="头像下的个人介绍"><a href="#头像下的个人介绍" class="headerlink" title="头像下的个人介绍"></a>头像下的个人介绍</h2><p>在blog 根目录的配置文件 <code>_config.yml</code> 中，设置 <code>description</code> 即可。</p>
+<h2 id="其他个人链接"><a href="#其他个人链接" class="headerlink" title="其他个人链接"></a>其他个人链接</h2><p>在主题配置中，搜索 <code>social</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;crane0 || fab fa-github</span><br><span class="line">  E-Mail: mailto:bhad5683126@gmail.com || fa fa-envelope</span><br><span class="line">  WeiXin: &#x2F;wechat || fa fa-weixin</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="个人微信二维码"><a href="#个人微信二维码" class="headerlink" title="个人微信二维码"></a>个人微信二维码</h2><p>因为需要展示一个图片，而原有的配置都是链接，</p>
+<p>所以换个思路，新建一个路由，该页面只放一个图片即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page wechat</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>source</code> 目录下会新建一个文件夹，放入二维码图片，</p>
+<p>修改 <code>wechat/index.md</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 扫描下面二维码添加微信</span><br><span class="line">---</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;wechat-pr.jpg&quot; style&#x3D;&quot;text-align:center; margin: auto; width: 150px&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hexo+next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo_next建站3</title>
+    <url>/2020/04/14/hexo-next%E5%BB%BA%E7%AB%993/</url>
+    <content><![CDATA[<p>hexo_next建站3</p>
+<a id="more"></a>
+
+<h1 id="添加评论"><a href="#添加评论" class="headerlink" title="添加评论"></a>添加评论</h1><p>1，进入来必力官网，<a href="https://www.livere.com，注册登录成功后，在导航栏选择「安装」，" target="_blank" rel="noopener">https://www.livere.com，注册登录成功后，在导航栏选择「安装」，</a></p>
+<p>2，选择 City版免费，填入相关信息拿到代码，（其实只需要 data-uid）</p>
+<p>3，打开主题配置文件，搜索 <code>livere_uid</code>，填入即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">livere_uid: xxxx</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="添加文章字数统计和阅读时长，底部站点总字数"><a href="#添加文章字数统计和阅读时长，底部站点总字数" class="headerlink" title="添加文章字数统计和阅读时长，底部站点总字数"></a>添加文章字数统计和阅读时长，底部站点总字数</h1><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">npm install hexo-symbols-count-time --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="站点配置文件-config-yml-新增如下："><a href="#站点配置文件-config-yml-新增如下：" class="headerlink" title="站点配置文件_config.yml 新增如下："></a>站点配置文件_config.yml 新增如下：</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line"> #文章内是否显示</span><br><span class="line">  symbols: true</span><br><span class="line">  time: true</span><br><span class="line"> # 网页底部是否显示</span><br><span class="line">  total_symbols: true  # 显示站点总字数</span><br><span class="line">  total_time: false</span><br></pre></td></tr></table></figure>
+
+<h2 id="主题配置文件-config-yml，搜索-symbols-count-time，"><a href="#主题配置文件-config-yml，搜索-symbols-count-time，" class="headerlink" title="主题配置文件_config.yml，搜索 symbols_count_time，"></a><strong>主题</strong>配置文件_config.yml，搜索 <code>symbols_count_time</code>，</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">symbols_count_time:</span><br><span class="line">  separated_meta: true  # false会显示一行</span><br><span class="line">  item_text_post: true  # 显示文字名称,设为false后只显示图标和统计数字,不显示文字名称</span><br><span class="line">  item_text_total: true # 底部footer是否显示站点字数统计属性文字</span><br><span class="line">  wpm: 275              # 一分钟阅读的字数，可不设置</span><br></pre></td></tr></table></figure>
+
+
+<p>添加之后，本地测试环境的时长可能会显示 NaN，但不影响，部署后的正式环境没有问题。</p>
+<h1 id="建站时间"><a href="#建站时间" class="headerlink" title="建站时间"></a>建站时间</h1><p>在主题配置中，搜索 <code>since</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  since: 2020 # 建站时间，默认当前年份</span><br></pre></td></tr></table></figure>
+
+<h1 id="网站图标设置"><a href="#网站图标设置" class="headerlink" title="网站图标设置"></a>网站图标设置</h1><p>在主题配置中，搜索 <code>favicon</code>，修改图片即可。</p>
+<blockquote>
+<p>可以在这里找图标 </p>
+</blockquote>
+<ul>
+<li><a href="https://www.iconfont.cn/" target="_blank" rel="noopener">https://www.iconfont.cn/</a>   </li>
+<li><a href="https://www.easyicon.net/" target="_blank" rel="noopener">https://www.easyicon.net/</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">favicon:</span><br><span class="line">  small: &#x2F;images&#x2F;favicon-16*16.png</span><br><span class="line">  medium: &#x2F;images&#x2F;favicon-32*32.png</span><br><span class="line">  apple_touch_icon: &#x2F;images&#x2F;favicon-32*32.png</span><br><span class="line">  safari_pinned_tab: &#x2F;images&#x2F;favicon-32*32.png</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hexo+next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo_next建站4</title>
+    <url>/2020/04/14/hexo-next%E5%BB%BA%E7%AB%994/</url>
+    <content><![CDATA[<p>hexo_next建站4</p>
+<a id="more"></a>
+
+<h1 id="使用中文时的问题"><a href="#使用中文时的问题" class="headerlink" title="使用中文时的问题"></a>使用中文时的问题</h1><p>文章文件名中，不能包含中文，否则会有如下报错。</p>
+<blockquote>
+<p>文件的 title 属性 无所谓。</p>
+</blockquote>
+<p>错误：<a href="https://github.com/hexojs/hexo/issues/3859" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/3859</a></p>
+<p>解决：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+<p>修改站点配置文件</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">post/:abbrlink.html</span></span><br><span class="line"><span class="comment"># abbrlink config</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>    <span class="comment"># 进制：dec(default) and hex</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="相关文章推荐"><a href="#相关文章推荐" class="headerlink" title="相关文章推荐"></a>相关文章推荐</h1><p>在每篇文章的最后，推荐相关标签的。</p>
+<blockquote>
+<p>必须有相同标签的文章，才会显示推荐的文章列表</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-related-popular-posts --save</span><br></pre></td></tr></table></figure>
+
+<p>在主题配置文件中，搜索 <code>related_posts</code>,</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">related_posts:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">title:</span> <span class="comment"># Custom header, leave empty to use the default one</span></span><br><span class="line">  <span class="attr">display_in_home:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">params:</span></span><br><span class="line">    <span class="attr">maxCount:</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="首页显示摘要"><a href="#首页显示摘要" class="headerlink" title="首页显示摘要"></a>首页显示摘要</h1><p>首页默认是展示所有文章的所有内容，这样会导致内容过多，</p>
+<p>首页显示摘要即可。</p>
+<p>解决：</p>
+<p>版本，next  v7.x</p>
+<p>在文章中使用 <code>&lt;!-- more --&gt;</code> 来截断，上面的就是摘要，下面的是正文。并且会在首页的摘要中添加阅读全文的按钮。</p>
+<p>7.6版本之前，通过在主题文件中，</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">scroll_to_more:</span> <span class="literal">true</span>      <span class="comment"># 点击阅读全文后是否跳到&lt;!--more--&gt;标记处,设为false时点击阅读全文可以从头阅读</span></span><br><span class="line"></span><br><span class="line"><span class="attr">save_scroll:</span> <span class="literal">false</span>        <span class="comment"># 自动保存每篇文章或页面上一次滚动的地方</span></span><br><span class="line"></span><br><span class="line"><span class="attr">excerpt_description:</span> <span class="literal">true</span> <span class="comment"># 自动在首页对文章进行摘要描述作为前言文本</span></span><br><span class="line"></span><br><span class="line"><span class="attr">auto_excerpt:</span>   <span class="comment"># 是否自动截取摘要</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">false</span> <span class="comment"># 设置为true则自动截取150字当做首页摘要</span></span><br><span class="line">  <span class="attr">length:</span> <span class="number">150</span>   <span class="comment"># 自动截取的字数</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="顶部加载资源滚动条"><a href="#顶部加载资源滚动条" class="headerlink" title="顶部加载资源滚动条"></a>顶部加载资源滚动条</h1><p>基于这个插件 <code>https://github.com/theme-next/theme-next-pace</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">cd themes&#x2F;next</span><br><span class="line"></span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;theme-next&#x2F;theme-next-pace source&#x2F;lib&#x2F;pace</span><br></pre></td></tr></table></figure>
+
+<p>在主题配置文件，搜索 <code>pace</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pace:</span><br><span class="line">  enable: true</span><br><span class="line">  theme: minimal</span><br></pre></td></tr></table></figure>
+
+<h1 id="代码块风格"><a href="#代码块风格" class="headerlink" title="代码块风格"></a>代码块风格</h1><p>next 使用的是 <a href="https://github.com/chriskempson/tomorrow-theme" target="_blank" rel="noopener">https://github.com/chriskempson/tomorrow-theme</a></p>
+<p>在主题配置文件中，搜索 <code>codeblock</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">codeblock:</span><br><span class="line">  highlight_theme: normal</span><br><span class="line">  # 显示复制按钮</span><br><span class="line">  copy_button:</span><br><span class="line">    enable: true</span><br><span class="line">    # 复制成功后，按钮变✔️</span><br><span class="line">    show_result: true</span><br><span class="line">    # Available values: default | flat | mac</span><br><span class="line">    # 2 中风格选择</span><br><span class="line">    style: mac</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码块顶部显示代码路径"><a href="#代码块顶部显示代码路径" class="headerlink" title="代码块顶部显示代码路径"></a>代码块顶部显示代码路径</h2><p>在三个冒号后添加 <code>html 路径即可</code></p>
+<figure class="highlight html"><figcaption><span>a/b/c</span></figcaption><table><tr><td class="code"><pre><span class="line">const a = 123</span><br></pre></td></tr></table></figure>
+
+<h1 id="顶部阅读进度条"><a href="#顶部阅读进度条" class="headerlink" title="顶部阅读进度条"></a>顶部阅读进度条</h1><p>在主题配置文件中，搜索 <code>reading_progress</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">reading_progress:</span><br><span class="line">  enable: true</span><br><span class="line">  # Available values: top | bottom</span><br><span class="line">  position: top</span><br><span class="line">  color: &quot;#37c6c0&quot;</span><br><span class="line">  height: 3px</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置右上角-github-图标"><a href="#设置右上角-github-图标" class="headerlink" title="设置右上角 github 图标"></a>设置右上角 github 图标</h1><p>在主题配置文件中，搜索 <code>github_banner</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">github_banner:</span><br><span class="line">  enable: true</span><br><span class="line">  permalink: https:&#x2F;&#x2F;github.com&#x2F;crane0&#x2F;crane0.github.io</span><br><span class="line">  title: Follow me on GitHub</span><br></pre></td></tr></table></figure>
+
+<h1 id="设置阅读位置标记"><a href="#设置阅读位置标记" class="headerlink" title="设置阅读位置标记"></a>设置阅读位置标记</h1><blockquote>
+<p>我未设置</p>
+</blockquote>
+<p>点击标签按钮，可以记住当前阅读位置，下次打开页面会自动到之前记忆的位置。</p>
+<p>在主题配置文件中，搜索 <code>bookmark</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bookmark:</span><br><span class="line">  enable: true</span><br><span class="line">  # Customize the color of the bookmark.</span><br><span class="line">  color: &quot;#222&quot;</span><br><span class="line">  # If auto, save the reading progress when closing the page or clicking the bookmark-icon.</span><br><span class="line">  # If manual, only save it by clicking the bookmark-icon.</span><br><span class="line">  save: auto</span><br></pre></td></tr></table></figure>
+
+<h1 id="页面底部信息"><a href="#页面底部信息" class="headerlink" title="页面底部信息"></a>页面底部信息</h1><h2 id="页面底部信息居中显示"><a href="#页面底部信息居中显示" class="headerlink" title="页面底部信息居中显示"></a>页面底部信息居中显示</h2><p>如果使用的是 Mist 风格，在 <code>themes/next/source/css/_schemes/Muse</code> 文件夹下，搜索 <code>footer-inner</code>，将其值改为 <code>center</code> 即可。</p>
+<blockquote>
+<p>我用的 Muse 风格</p>
+</blockquote>
+<h2 id="隐藏-Hexo-和-NexT-信息"><a href="#隐藏-Hexo-和-NexT-信息" class="headerlink" title="隐藏 Hexo 和 NexT 信息"></a>隐藏 Hexo 和 NexT 信息</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">footer:</span><br><span class="line">  powered: false</span><br></pre></td></tr></table></figure>
+
+<h2 id="文末版权声明"><a href="#文末版权声明" class="headerlink" title="文末版权声明"></a>文末版权声明</h2><p>在主题配置文件中，搜索 <code>creative_commons</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">creative_commons:</span><br><span class="line">  license: by-nc-sa</span><br><span class="line">  sidebar: true</span><br><span class="line">  post: true</span><br><span class="line">  language: zh-CN</span><br></pre></td></tr></table></figure>
+
+<p>改文章末尾就是例子，默认只展示这3个，对应文字的修改在 <code>themes/next/languages/zh-CN.yml</code> 搜索 <code>copyright</code></p>
+<p>原始链接对应的地址的host，是在<strong>站点的配置文件</strong>中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">url: http:&#x2F;&#x2F;crane0.github.io</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hexo+next</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>markdown特殊语法</title>
+    <url>/2020/04/14/markdown%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>不同的编译引擎，会有一些特殊的语法</p>
+<a id="more"></a>
+
+<p>参考 <a href="https://tding.top/archives/29bfe8c9.html" target="_blank" rel="noopener">https://tding.top/archives/29bfe8c9.html</a></p>
+<h1 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>世间所有的相遇，都是久别重逢</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
+<h1 id="提示块-Note"><a href="#提示块-Note" class="headerlink" title="提示块 - Note"></a>提示块 - Note</h1><p>在主题配置文件中，可以修改风格</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span> <span class="comment"># 是否显示图标</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note default">
+            <p>default 提示块标签</p>
+          </div>
+
+<div class="note primary">
+            <p>primary 提示块标签</p>
+          </div>
+
+<div class="note success">
+            <p>success 提示块标签</p>
+          </div>
+
+<div class="note info">
+            <p>info 提示块标签</p>
+          </div>
+
+<div class="note warning">
+            <p>warning 提示块标签</p>
+          </div>
+
+<div class="note danger">
+            <p>danger 提示块标签</p>
+          </div>
+
+<h1 id="标签-Label"><a href="#标签-Label" class="headerlink" title="标签 - Label"></a>标签 - Label</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% label default@默认 %&#125; &#123;% label primary@主要 %&#125; &#123;% label success@成功 %&#125; &#123;% label info@信息 %&#125; &#123;% label warning@警告 %&#125; &#123;% label danger@危险 %&#125;</span><br></pre></td></tr></table></figure>
+
+<span class="label default">默认</span> <span class="label primary">主要</span> <span class="label success">成功</span> <span class="label info">信息</span> <span class="label warning">警告</span> <span class="label danger">危险</span> 
+
+<h1 id="选项卡-Tabs"><a href="#选项卡-Tabs" class="headerlink" title="选项卡 - Tabs"></a>选项卡 - Tabs</h1><p>在主题配置文件中，可以修改风格</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% tabs tab,1 %&#125; 名字为tab，默认在第1个选项卡，如果是-1则隐藏</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 1 </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab A --&gt;</span><br><span class="line">选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">tab 1</a></li><li class="tab"><a href="#tab-2">tab 2</a></li><li class="tab"><a href="#tab-3">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>选项卡 1 </p></div><div class="tab-pane" id="tab-2"><p>选项卡 2</p></div><div class="tab-pane" id="tab-3"><p>选项卡 3</p></div></div></div>
+
+<h1 id="按钮-Button"><a href="#按钮-Button" class="headerlink" title="按钮 - Button"></a>按钮 - Button</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% button url, text, icon [class], [title] %&#125;</span><br></pre></td></tr></table></figure>
+<div class="text-center">
+  <div>
+    <a class="btn" href="https://crane0.github.io/ " title="这是博客首页">
+            <i class="fa fa-home fa-fw"></i>首页
+          </a> 
+    <a class="btn" href="https://crane0.github.io/archives/ " title="这是归档">
+            <i class="fa fa-archive fa-archive"></i>归档
+          </a> 
+    <a class="btn" href="https://crane0.github.io/tags/ " title="这是标签">
+            <i class="fa fa-tags fa-tags"></i>标签
+          </a>
+  </div>
+</div>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>test_my_site</title>
     <url>/2020/04/11/test-my-site/</url>
     <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
+<a id="more"></a>
+
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -50,17 +329,8 @@
         <category>web前端</category>
       </categories>
       <tags>
-        <tag>jQuery</tag>
         <tag>表格</tag>
         <tag>表单验证</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>test_recent</title>
-    <url>/2020/04/14/test-recent/</url>
-    <content><![CDATA[<blockquote>
-<p>这是注释</p>
-</blockquote>
-]]></content>
   </entry>
 </search>
