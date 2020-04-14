@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>中文标题</title>
+    <url>/2020/04/14/ch/</url>
+    <content><![CDATA[<h2 id="这是中文标题"><a href="#这是中文标题" class="headerlink" title="这是中文标题"></a>这是中文标题</h2><p>这是是摘要1，</p>
+<p>官方公告：auto_excerpt 可以自动截断文章内容作为摘要。此功能不是一个 Hexo 主题应当负责的，这为主题的维护者带来了太大压力。自 7.6.0 版本开始，此功能被移除，请自行安装第三方插件，或阅读 Hexo 有关文档。当然，我们仍然建议通过，<code>&lt;!-- more --&gt;</code>来精确控制 Read More 的位置。</p>
+<a id="more"></a>
+
+
+<p>这是正文</p>
+<figure class="highlight html"><figcaption><span>themes/index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const a =  '123'</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ const b = 'add'</span></span><br><span class="line"><span class="deletion">- const c = 'minus'</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hello</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
-    <url>/post/4a17b156.html</url>
+    <url>/2020/04/13/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
@@ -23,7 +39,7 @@
   </entry>
   <entry>
     <title>test_my_site</title>
-    <url>/post/7525f478.html</url>
+    <url>/2020/04/11/test-my-site/</url>
     <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -40,19 +56,11 @@
       </tags>
   </entry>
   <entry>
-    <title>中文标题</title>
-    <url>/post/60b8b68d.html</url>
-    <content><![CDATA[<h2 id="这是中文标题"><a href="#这是中文标题" class="headerlink" title="这是中文标题"></a>这是中文标题</h2><p>这是是摘要，</p>
-<p>官方公告：auto_excerpt 可以自动截断文章内容作为摘要。此功能不是一个 Hexo 主题应当负责的，这为主题的维护者带来了太大压力。自 7.6.0 版本开始，此功能被移除，请自行安装第三方插件，或阅读 Hexo 有关文档。当然，我们仍然建议通过，<code>&lt;!-- more --&gt;</code>来精确控制 Read More 的位置。</p>
-<a id="more"></a>
-
-
-<p>这是正文</p>
-<figure class="highlight html"><figcaption><span>themes/index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const a =  '123'</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ const b = 'add'</span></span><br><span class="line"><span class="deletion">- const c = 'minus'</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>hello</tag>
-      </tags>
+    <title>test_recent</title>
+    <url>/2020/04/14/test-recent/</url>
+    <content><![CDATA[<blockquote>
+<p>这是注释</p>
+</blockquote>
+]]></content>
   </entry>
 </search>
