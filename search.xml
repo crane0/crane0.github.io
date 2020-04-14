@@ -22,22 +22,6 @@
       </tags>
   </entry>
   <entry>
-    <title>中文标题</title>
-    <url>/post/60b8b68d.html</url>
-    <content><![CDATA[<h2 id="这是中文标题"><a href="#这是中文标题" class="headerlink" title="这是中文标题"></a>这是中文标题</h2><p>这是是摘要，</p>
-<p>官方公告：auto_excerpt 可以自动截断文章内容作为摘要。此功能不是一个 Hexo 主题应当负责的，这为主题的维护者带来了太大压力。自 7.6.0 版本开始，此功能被移除，请自行安装第三方插件，或阅读 Hexo 有关文档。当然，我们仍然建议通过，<code>&lt;!-- more --&gt;</code>来精确控制 Read More 的位置。</p>
-<a id="more"></a>
-
-
-<p>这是正文</p>
-<figure class="highlight html"><figcaption><span>themes/index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const a =  '123'</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ const b = 'add'</span></span><br><span class="line"><span class="deletion">- const c = 'minus'</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>hello</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>test_my_site</title>
     <url>/post/7525f478.html</url>
     <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
@@ -53,6 +37,22 @@
         <tag>jQuery</tag>
         <tag>表格</tag>
         <tag>表单验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中文标题</title>
+    <url>/post/60b8b68d.html</url>
+    <content><![CDATA[<h2 id="这是中文标题"><a href="#这是中文标题" class="headerlink" title="这是中文标题"></a>这是中文标题</h2><p>这是是摘要，</p>
+<p>官方公告：auto_excerpt 可以自动截断文章内容作为摘要。此功能不是一个 Hexo 主题应当负责的，这为主题的维护者带来了太大压力。自 7.6.0 版本开始，此功能被移除，请自行安装第三方插件，或阅读 Hexo 有关文档。当然，我们仍然建议通过，<code>&lt;!-- more --&gt;</code>来精确控制 Read More 的位置。</p>
+<a id="more"></a>
+
+
+<p>这是正文</p>
+<figure class="highlight html"><figcaption><span>themes/index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">const a =  '123'</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight diff"><table><tr><td class="code"><pre><span class="line"><span class="addition">+ const b = 'add'</span></span><br><span class="line"><span class="deletion">- const c = 'minus'</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>hello</tag>
       </tags>
   </entry>
 </search>
