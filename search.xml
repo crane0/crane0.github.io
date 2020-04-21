@@ -481,4 +481,20 @@
         <tag>this</tag>
       </tags>
   </entry>
+  <entry>
+    <title>base64编解码</title>
+    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
+<a id="more"></a>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具方法</category>
+      </categories>
+      <tags>
+        <tag>工具方法</tag>
+      </tags>
+  </entry>
 </search>
