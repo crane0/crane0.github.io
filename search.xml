@@ -1,76 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <tags>
-        <tag>hello</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo_next建站_常见问题</title>
-    <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>hexo+next建站，常见问题汇总</p>
-<a id="more"></a>
-
-<h1 id="使用中文时的问题"><a href="#使用中文时的问题" class="headerlink" title="使用中文时的问题"></a>使用中文时的问题</h1><p>文章文件名中，不能包含中文，否则会有如下报错。</p>
-<blockquote>
-<p>文件的 title 属性 无所谓。</p>
-</blockquote>
-<p>错误：<a href="https://github.com/hexojs/hexo/issues/3859" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/3859</a></p>
-<p>解决：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
-<p>修改站点配置文件</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">post/:abbrlink.html</span></span><br><span class="line"><span class="comment"># abbrlink config</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>    <span class="comment"># 进制：dec(default) and hex</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="配置个人域名时的问题"><a href="#配置个人域名时的问题" class="headerlink" title="配置个人域名时的问题"></a>配置个人域名时的问题</h1><p>将个人域名 <code>crane0.com</code> 解析到 <code>crane0.github.io</code> 之后，在该项目的 Settings 中添加配置</p>
-<p><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/1.jpg" alt="settings"></p>
-<p>第二天时，当访问 <a href="http://crane0.com/" target="_blank" rel="noopener">http://crane0.com/</a> 时发现 404 了，查看上面设置的 Custom domain 竟然为空了。</p>
-<ul>
-<li>解决办法：</li>
-</ul>
-<p>在项目的根目录下新建 <code>CNAME</code> 文件（没有后缀名），输入自定义的域名保存即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">www.crane0.com</span><br></pre></td></tr></table></figure>
-
-<p>之后在部署到 GitHub 时，就不会失效了。</p>
-<h1 id="本地图片问题"><a href="#本地图片问题" class="headerlink" title="本地图片问题"></a>本地图片问题</h1><p>在 markdown 的语法中，插入图片的语法如下：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![描述](图片路径)</span><br></pre></td></tr></table></figure>
-<p>但是在 hexo 中貌似失效了。</p>
-<p>比如，我的文件目录如下</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- _post</span><br><span class="line">  -- image</span><br><span class="line">    -- 1.jpg</span><br><span class="line">  -- test.md</span><br></pre></td></tr></table></figure>
-<p>在 <code>test.md</code> 中插入图片 <code>![](./image/1.jpg)</code>，发现并没有效果。</p>
-<p>在网页中查看该图片时，发现路径是 <code>http://localhost:4000/test/image/1.jpg</code>。</p>
-<p>那就简单了，我在当前目录下新建一个和当前文件 <code>test.md</code> 同名的文件夹，放入图片即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- _post</span><br><span class="line">  -- test</span><br><span class="line">    -- 1.jpg</span><br><span class="line">  -- test.md</span><br></pre></td></tr></table></figure>
-<p>解决。</p>
-<p>另外，其实在站点的配置文件 <code>_config.yml</code> 中，修改 <code>post_asset_folder: true</code>，就可以在运行下面命令时，</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new 新文件</span><br></pre></td></tr></table></figure>
-<p>同时创建同名的文件夹。</p>
-]]></content>
-      <categories>
-        <category>hexo建站</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo_next建站_站点概览模块</title>
     <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E7%AB%99%E7%82%B9%E6%A6%82%E8%A7%88%E6%A8%A1%E5%9D%97/</url>
     <content><![CDATA[<p>hexo_next建站，站点概览模块</p>
@@ -262,22 +192,50 @@
       </tags>
   </entry>
   <entry>
-    <title>test_my_site</title>
-    <url>/2020/04/11/test-my-site/</url>
-    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
+    <title>hexo_next建站_常见问题</title>
+    <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>hexo+next建站，常见问题汇总</p>
 <a id="more"></a>
 
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="使用中文时的问题"><a href="#使用中文时的问题" class="headerlink" title="使用中文时的问题"></a>使用中文时的问题</h1><p>文章文件名中，不能包含中文，否则会有如下报错。</p>
+<blockquote>
+<p>文件的 title 属性 无所谓。</p>
+</blockquote>
+<p>错误：<a href="https://github.com/hexojs/hexo/issues/3859" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/3859</a></p>
+<p>解决：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure>
+<p>修改站点配置文件</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">permalink:</span> <span class="string">post/:abbrlink.html</span></span><br><span class="line"><span class="comment"># abbrlink config</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>    <span class="comment"># 进制：dec(default) and hex</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// n 可以省略</span><br><span class="line">git <span class="built_in">log</span> -nx</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; n 可以省略</span><br><span class="line">git log -nx</span><br></pre></td></tr></table></figure>]]></content>
+<h1 id="配置个人域名时的问题"><a href="#配置个人域名时的问题" class="headerlink" title="配置个人域名时的问题"></a>配置个人域名时的问题</h1><p>将个人域名 <code>crane0.com</code> 解析到 <code>crane0.github.io</code> 之后，在该项目的 Settings 中添加配置</p>
+<p><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/1.jpg" alt="settings"></p>
+<p>第二天时，当访问 <a href="http://crane0.com/" target="_blank" rel="noopener">http://crane0.com/</a> 时发现 404 了，查看上面设置的 Custom domain 竟然为空了。</p>
+<ul>
+<li>解决办法：</li>
+</ul>
+<p>在项目的根目录下新建 <code>CNAME</code> 文件（没有后缀名），输入自定义的域名保存即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">www.crane0.com</span><br></pre></td></tr></table></figure>
+
+<p>之后在部署到 GitHub 时，就不会失效了。</p>
+<h1 id="本地图片问题"><a href="#本地图片问题" class="headerlink" title="本地图片问题"></a>本地图片问题</h1><p>在 markdown 的语法中，插入图片的语法如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">![描述](图片路径)</span><br></pre></td></tr></table></figure>
+<p>但是在 hexo 中貌似失效了。</p>
+<p>比如，我的文件目录如下</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- _post</span><br><span class="line">  -- image</span><br><span class="line">    -- 1.jpg</span><br><span class="line">  -- test.md</span><br></pre></td></tr></table></figure>
+<p>在 <code>test.md</code> 中插入图片 <code>![](./image/1.jpg)</code>，发现并没有效果。</p>
+<p>在网页中查看该图片时，发现路径是 <code>http://localhost:4000/test/image/1.jpg</code>。</p>
+<p>那就简单了，我在当前目录下新建一个和当前文件 <code>test.md</code> 同名的文件夹，放入图片即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">-- _post</span><br><span class="line">  -- test</span><br><span class="line">    -- 1.jpg</span><br><span class="line">  -- test.md</span><br></pre></td></tr></table></figure>
+<p>解决。</p>
+<p>另外，其实在站点的配置文件 <code>_config.yml</code> 中，修改 <code>post_asset_folder: true</code>，就可以在运行下面命令时，</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new 新文件</span><br></pre></td></tr></table></figure>
+<p>同时创建同名的文件夹。</p>
+]]></content>
       <categories>
-        <category>web前端</category>
+        <category>hexo建站</category>
       </categories>
       <tags>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -355,14 +313,45 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode</title>
-    <url>/2020/04/17/leetcode/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">    arr[j] = arr[i]</span><br><span class="line">    <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">      arr[i] = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    j++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>Hello World</title>
+    <url>/2020/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>hello</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test_my_site</title>
+    <url>/2020/04/11/test-my-site/</url>
+    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// n 可以省略</span><br><span class="line">git <span class="built_in">log</span> -nx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; n 可以省略</span><br><span class="line">git log -nx</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>algorithm</category>
+        <category>web前端</category>
       </categories>
       <tags>
-        <tag>algorithm</tag>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
       </tags>
   </entry>
   <entry>
@@ -505,19 +494,14 @@
       </tags>
   </entry>
   <entry>
-    <title>base64编解码</title>
-    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
-    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
-<a id="more"></a>
-
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
-]]></content>
+    <title>leetcode</title>
+    <url>/2020/04/17/leetcode/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">    arr[j] = arr[i]</span><br><span class="line">    <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">      arr[i] = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    j++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>工具方法</category>
+        <category>algorithm</category>
       </categories>
       <tags>
-        <tag>工具方法</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -601,17 +585,54 @@
 <h1 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h1><p>函数之间的调用发生嵌套时，就会形成一些列的调用栈。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo2()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo3()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo4()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">debugger</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'foo4'</span>)</span><br><span class="line">&#125;</span><br><span class="line">foo1()</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/2.jpg" alt="callStack"></p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/2.jpg" width="50%" />
+
 <div class="note warning">
             <p>一般来说，在函数执行完毕并出栈后，函数内局部变量在下一个垃圾回收节点会被回收，该函数对应的执行上下文将会被销毁，这也正是在外部无法访问函数内定义的变量的原因。<br>也就是说，只有在函数执行时，相关函数才可以访问该变量，该变量在预编译阶段进行创建，在执行阶段进行激活，在函数执行完毕后，相关上下文被销毁。</p>
           </div>
 
-<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1>]]></content>
+<h1 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h1><div class="note info">
+            <p>函数嵌套函数时，内层函数引用了外层函数作用域下的变量，并且内层函数在全局环境下可访问，就形成了闭包。</p>
+          </div>
+
+<p>内层函数在全局环境下如何可访问 ?</p>
+<ul>
+<li>外层函数返回</li>
+<li></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line">  num++</span><br><span class="line">  <span class="keyword">debugger</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> getNum = numGenerator()</span><br><span class="line">getNum()</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，numGenerator 函数执行完毕出栈后，变量 num 不会消失，成为一个 Closure，仍然可以被外界访问。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/3.jpg" width="50%" />
+
+<p>上面说到在正常情况下，函数执行完毕后上下文即被销毁，函数内局部变量在下一个垃圾回收节点会被回收。</p>
+<div class="note info">
+            <p>闭包的基本原理：在外层函数中如果返回了另一个函数，且这个返回的函数使用了外层函数内的变量，外界便能够通过这个返回的函数获取原外层函数内部的变量值。</p>
+          </div>
+
+<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>正在整理中。。。</p>
+]]></content>
       <categories>
         <category>JavaScript 核心</category>
       </categories>
       <tags>
         <tag>变量提升</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>base64编解码</title>
+    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
+<a id="more"></a>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具方法</category>
+      </categories>
+      <tags>
+        <tag>工具方法</tag>
       </tags>
   </entry>
   <entry>
