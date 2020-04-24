@@ -1,31 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>hexo_next建站_站点概览模块</title>
-    <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E7%AB%99%E7%82%B9%E6%A6%82%E8%A7%88%E6%A8%A1%E5%9D%97/</url>
-    <content><![CDATA[<p>hexo_next建站，站点概览模块</p>
+    <title>markdown特殊语法</title>
+    <url>/2020/04/14/markdown%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>不同的编译引擎，会有一些特殊的语法</p>
 <a id="more"></a>
 
-<h1 id="站点概览"><a href="#站点概览" class="headerlink" title="站点概览"></a>站点概览</h1><h2 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h2><p>在主题配置中，搜索 <code>avatar</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.jpg</span><br><span class="line">  rounded: true</span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<p>参考 <a href="https://tding.top/archives/29bfe8c9.html" target="_blank" rel="noopener">https://tding.top/archives/29bfe8c9.html</a></p>
+<h1 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>世间所有的相遇，都是久别重逢</p>
 
-<h2 id="头像下的个人介绍"><a href="#头像下的个人介绍" class="headerlink" title="头像下的个人介绍"></a>头像下的个人介绍</h2><p>在blog 根目录的配置文件 <code>_config.yml</code> 中，设置 <code>description</code> 即可。</p>
-<h2 id="其他个人链接"><a href="#其他个人链接" class="headerlink" title="其他个人链接"></a>其他个人链接</h2><p>在主题配置中，搜索 <code>social</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;crane0 || fab fa-github</span><br><span class="line">  E-Mail: mailto:bhad5683126@gmail.com || fa fa-envelope</span><br><span class="line">  WeiXin: &#x2F;wechat || fa fa-weixin</span><br></pre></td></tr></table></figure>
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
 
+<h1 id="提示块-Note"><a href="#提示块-Note" class="headerlink" title="提示块 - Note"></a>提示块 - Note</h1><p>在主题配置文件中，可以修改风格</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span> <span class="comment"># 是否显示图标</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="个人微信二维码"><a href="#个人微信二维码" class="headerlink" title="个人微信二维码"></a>个人微信二维码</h2><p>因为需要展示一个图片，而原有的配置都是链接，</p>
-<p>所以换个思路，新建一个路由，该页面只放一个图片即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page wechat</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
 
-<p>在 <code>source</code> 目录下会新建一个文件夹，放入二维码图片，</p>
-<p>修改 <code>wechat/index.md</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 扫描下面二维码添加微信</span><br><span class="line">---</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;wechat-pr.jpg&quot; style&#x3D;&quot;text-align:center; margin: auto; width: 150px&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>hexo建站</category>
-      </categories>
+<div class="note default">
+            <p>default 提示块标签</p>
+          </div>
+
+<div class="note primary">
+            <p>primary 提示块标签</p>
+          </div>
+
+<div class="note success">
+            <p>success 提示块标签</p>
+          </div>
+
+<div class="note info">
+            <p>info 提示块标签</p>
+          </div>
+
+<div class="note warning">
+            <p>warning 提示块标签</p>
+          </div>
+
+<div class="note danger">
+            <p>danger 提示块标签</p>
+          </div>
+
+<h1 id="标签-Label"><a href="#标签-Label" class="headerlink" title="标签 - Label"></a>标签 - Label</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% label default@默认 %&#125; &#123;% label primary@主要 %&#125; &#123;% label success@成功 %&#125; &#123;% label info@信息 %&#125; &#123;% label warning@警告 %&#125; &#123;% label danger@危险 %&#125;</span><br></pre></td></tr></table></figure>
+
+<span class="label default">默认</span> <span class="label primary">主要</span> <span class="label success">成功</span> <span class="label info">信息</span> <span class="label warning">警告</span> <span class="label danger">危险</span> 
+
+<h1 id="选项卡-Tabs"><a href="#选项卡-Tabs" class="headerlink" title="选项卡 - Tabs"></a>选项卡 - Tabs</h1><p>在主题配置文件中，可以修改风格</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% tabs tab,1 %&#125; 名字为tab，默认在第1个选项卡，如果是-1则隐藏</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 1 </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab A --&gt;</span><br><span class="line">选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">tab 1</a></li><li class="tab"><a href="#tab-2">tab 2</a></li><li class="tab"><a href="#tab-3">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>选项卡 1 </p></div><div class="tab-pane" id="tab-2"><p>选项卡 2</p></div><div class="tab-pane" id="tab-3"><p>选项卡 3</p></div></div></div>
+
+<h1 id="按钮-Button"><a href="#按钮-Button" class="headerlink" title="按钮 - Button"></a>按钮 - Button</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% button url, text, icon [class], [title] %&#125;</span><br></pre></td></tr></table></figure>
+<div class="text-center">
+  <div>
+    <a class="btn" href="https://crane0.github.io/ " title="这是博客首页">
+            <i class="fa fa-home fa-fw"></i>首页
+          </a> 
+    <a class="btn" href="https://crane0.github.io/archives/ " title="这是归档">
+            <i class="fa fa-archive fa-archive"></i>归档
+          </a> 
+    <a class="btn" href="https://crane0.github.io/tags/ " title="这是标签">
+            <i class="fa fa-tags fa-tags"></i>标签
+          </a>
+  </div>
+</div>
+]]></content>
       <tags>
-        <tag>hexo</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -239,77 +285,50 @@
       </tags>
   </entry>
   <entry>
-    <title>markdown特殊语法</title>
-    <url>/2020/04/14/markdown%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<p>不同的编译引擎，会有一些特殊的语法</p>
+    <title>hexo_next建站_站点概览模块</title>
+    <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E7%AB%99%E7%82%B9%E6%A6%82%E8%A7%88%E6%A8%A1%E5%9D%97/</url>
+    <content><![CDATA[<p>hexo_next建站，站点概览模块</p>
 <a id="more"></a>
 
-<p>参考 <a href="https://tding.top/archives/29bfe8c9.html" target="_blank" rel="noopener">https://tding.top/archives/29bfe8c9.html</a></p>
-<h1 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>世间所有的相遇，都是久别重逢</p>
+<h1 id="站点概览"><a href="#站点概览" class="headerlink" title="站点概览"></a>站点概览</h1><h2 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h2><p>在主题配置中，搜索 <code>avatar</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.jpg</span><br><span class="line">  rounded: true</span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
 
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
+<h2 id="头像下的个人介绍"><a href="#头像下的个人介绍" class="headerlink" title="头像下的个人介绍"></a>头像下的个人介绍</h2><p>在blog 根目录的配置文件 <code>_config.yml</code> 中，设置 <code>description</code> 即可。</p>
+<h2 id="其他个人链接"><a href="#其他个人链接" class="headerlink" title="其他个人链接"></a>其他个人链接</h2><p>在主题配置中，搜索 <code>social</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;crane0 || fab fa-github</span><br><span class="line">  E-Mail: mailto:bhad5683126@gmail.com || fa fa-envelope</span><br><span class="line">  WeiXin: &#x2F;wechat || fa fa-weixin</span><br></pre></td></tr></table></figure>
 
-<h1 id="提示块-Note"><a href="#提示块-Note" class="headerlink" title="提示块 - Note"></a>提示块 - Note</h1><p>在主题配置文件中，可以修改风格</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span> <span class="comment"># 是否显示图标</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="个人微信二维码"><a href="#个人微信二维码" class="headerlink" title="个人微信二维码"></a>个人微信二维码</h2><p>因为需要展示一个图片，而原有的配置都是链接，</p>
+<p>所以换个思路，新建一个路由，该页面只放一个图片即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page wechat</span><br></pre></td></tr></table></figure>
 
-<div class="note default">
-            <p>default 提示块标签</p>
-          </div>
-
-<div class="note primary">
-            <p>primary 提示块标签</p>
-          </div>
-
-<div class="note success">
-            <p>success 提示块标签</p>
-          </div>
-
-<div class="note info">
-            <p>info 提示块标签</p>
-          </div>
-
-<div class="note warning">
-            <p>warning 提示块标签</p>
-          </div>
-
-<div class="note danger">
-            <p>danger 提示块标签</p>
-          </div>
-
-<h1 id="标签-Label"><a href="#标签-Label" class="headerlink" title="标签 - Label"></a>标签 - Label</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% label default@默认 %&#125; &#123;% label primary@主要 %&#125; &#123;% label success@成功 %&#125; &#123;% label info@信息 %&#125; &#123;% label warning@警告 %&#125; &#123;% label danger@危险 %&#125;</span><br></pre></td></tr></table></figure>
-
-<span class="label default">默认</span> <span class="label primary">主要</span> <span class="label success">成功</span> <span class="label info">信息</span> <span class="label warning">警告</span> <span class="label danger">危险</span> 
-
-<h1 id="选项卡-Tabs"><a href="#选项卡-Tabs" class="headerlink" title="选项卡 - Tabs"></a>选项卡 - Tabs</h1><p>在主题配置文件中，可以修改风格</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% tabs tab,1 %&#125; 名字为tab，默认在第1个选项卡，如果是-1则隐藏</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 1 </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab A --&gt;</span><br><span class="line">选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
-
-<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">tab 1</a></li><li class="tab"><a href="#tab-2">tab 2</a></li><li class="tab"><a href="#tab-3">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>选项卡 1 </p></div><div class="tab-pane" id="tab-2"><p>选项卡 2</p></div><div class="tab-pane" id="tab-3"><p>选项卡 3</p></div></div></div>
-
-<h1 id="按钮-Button"><a href="#按钮-Button" class="headerlink" title="按钮 - Button"></a>按钮 - Button</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% button url, text, icon [class], [title] %&#125;</span><br></pre></td></tr></table></figure>
-<div class="text-center">
-  <div>
-    <a class="btn" href="https://crane0.github.io/ " title="这是博客首页">
-            <i class="fa fa-home fa-fw"></i>首页
-          </a> 
-    <a class="btn" href="https://crane0.github.io/archives/ " title="这是归档">
-            <i class="fa fa-archive fa-archive"></i>归档
-          </a> 
-    <a class="btn" href="https://crane0.github.io/tags/ " title="这是标签">
-            <i class="fa fa-tags fa-tags"></i>标签
-          </a>
-  </div>
-</div>
-]]></content>
+<p>在 <code>source</code> 目录下会新建一个文件夹，放入二维码图片，</p>
+<p>修改 <code>wechat/index.md</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 扫描下面二维码添加微信</span><br><span class="line">---</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;wechat-pr.jpg&quot; style&#x3D;&quot;text-align:center; margin: auto; width: 150px&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo建站</category>
+      </categories>
       <tags>
-        <tag>markdown</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test_my_site</title>
+    <url>/2020/04/11/test-my-site/</url>
+    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// n 可以省略</span><br><span class="line">git <span class="built_in">log</span> -nx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; n 可以省略</span><br><span class="line">git log -nx</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
       </tags>
   </entry>
   <entry>
@@ -336,22 +355,14 @@
       </tags>
   </entry>
   <entry>
-    <title>test_my_site</title>
-    <url>/2020/04/11/test-my-site/</url>
-    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
-<a id="more"></a>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// n 可以省略</span><br><span class="line">git <span class="built_in">log</span> -nx</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; n 可以省略</span><br><span class="line">git log -nx</span><br></pre></td></tr></table></figure>]]></content>
+    <title>leetcode</title>
+    <url>/2020/04/17/leetcode/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">    arr[j] = arr[i]</span><br><span class="line">    <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">      arr[i] = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    j++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       <categories>
-        <category>web前端</category>
+        <category>algorithm</category>
       </categories>
       <tags>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -494,14 +505,197 @@
       </tags>
   </entry>
   <entry>
-    <title>leetcode</title>
-    <url>/2020/04/17/leetcode/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">    arr[j] = arr[i]</span><br><span class="line">    <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">      arr[i] = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    j++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    <title>base64编解码</title>
+    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
+<a id="more"></a>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
-        <category>algorithm</category>
+        <category>工具方法</category>
       </categories>
       <tags>
-        <tag>algorithm</tag>
+        <tag>工具方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提升</title>
+    <url>/2020/04/23/%E6%8F%90%E5%8D%87/</url>
+    <content><![CDATA[<p>涉及变量和函数提升。</p>
+<a id="more"></a>
+
+<h1 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h1><p>当通过 <code>var</code> 声明变量和赋值时，只会将<strong>声明</strong>进行提升到<strong>本层作用域</strong>最顶层。</p>
+<p>并且不会被 <code>if else</code> 影响。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(bar)</span><br><span class="line">  <span class="keyword">if</span> (bar &gt; <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> bar = <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>因为 bar 在函数内部会提升到顶层，所以相当于</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> bar</span><br><span class="line">  <span class="built_in">console</span>.log(bar)</span><br><span class="line">  <span class="keyword">if</span> (bar &gt; <span class="number">4</span>) &#123;</span><br><span class="line">    bar = <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h1><p>函数的声明有 2 种方式</p>
+<h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相当于变量的提升。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fn</span><br><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// undefined</span></span><br><span class="line">fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="函数式声明"><a href="#函数式声明" class="headerlink" title="函数式声明"></a>函数式声明</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// ƒ fn() &#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相当于</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// ƒ fn() &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<div class="note info">
+            <p>提升优先级：函数式声明 &gt; 变量</p>
+          </div>]]></content>
+      <categories>
+        <category>JavaScript 核心</category>
+      </categories>
+      <tags>
+        <tag>提升</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>内存管理</title>
+    <url>/2020/04/24/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<p>js 依赖宿主浏览器的垃圾回收机制，释放内存的释放一般情况下不需要程序员关心。但某些情况下还是需要注意，否则会出现内存泄漏现象。</p>
+<a id="more"></a>
+
+<blockquote>
+<p>内存管理是指对内存生命周期的管理。</p>
+</blockquote>
+<p>内存生命周期：分配内存 –&gt; 使用（读写）内存 –&gt; 释放内存</p>
+<h1 id="栈空间和堆空间"><a href="#栈空间和堆空间" class="headerlink" title="栈空间和堆空间"></a>栈空间和堆空间</h1><p>内存空间的分为：栈空间和堆空间。</p>
+<p>在 js 中的，数据类型分为基本和引用数据类型。</p>
+<ul>
+<li>栈空间，存放基本数据类型。</li>
+<li>堆空间，存放引用数据类型。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="string">'crane0'</span></span><br><span class="line"><span class="keyword">let</span> c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> d = &#123; <span class="attr">age</span>: <span class="number">18</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>内存分类图：</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/4.jpg" width="450" />
+
+<h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><p>2种算法</p>
+<ul>
+<li>引用计数</li>
+<li>标记清除</li>
+</ul>
+<blockquote>
+<p>从2012年起，所有现代浏览器都使用了标记-清除垃圾回收算法。</p>
+</blockquote>
+<p>标记清除算法把“对象是否不再需要”简化定义为“对象是否可以获得”。需要说明的一点是，因为“有零引用的对象”总是不可获得的。</p>
+<p>简单的理解：算法从“根”对象（js 中就是 window）定期的找所有引用的对象。</p>
+<p>垃圾回收器根据这个算法，可以找到所有可以获得和不可获得的对象。</p>
+<h1 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h1><p>概念：指内存空间已经不再使用，但因为某种原因没有得到释放的情况。</p>
+<p>危害：直接导致程序运行缓慢，甚至崩溃。</p>
+<h2 id="典型场景举例"><a href="#典型场景举例" class="headerlink" title="典型场景举例"></a>典型场景举例</h2><p>首选需要清楚2点：</p>
+<ul>
+<li>全局变量的生命周期会一直持续，直到页面卸载。</li>
+<li>局部变量的生命周期从执行函数开始，直到函数执行结束。（闭包情况特殊）</li>
+</ul>
+<h3 id="例1，获取了页面元素后赋值给变量，最后只在-DOM-Tree-中移除该元素。"><a href="#例1，获取了页面元素后赋值给变量，最后只在-DOM-Tree-中移除该元素。" class="headerlink" title="例1，获取了页面元素后赋值给变量，最后只在 DOM Tree 中移除该元素。"></a>例1，获取了页面元素后赋值给变量，最后只在 DOM Tree 中移除该元素。</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line">element.innerHTML = <span class="string">"阅读全文"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除 element 节点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  element.parentNode.removeChild(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但声明的 <code>element</code> 对象还是在内存中，所以对应的元素占用的内存还是无法释放。</p>
+<blockquote>
+<p>这里默认的情况是，既然已经移除对应的页面元素，这个声明的变量也不会再使用了。</p>
+</blockquote>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/5.jpg" width="450" />
+
+<p>所以在 <code>remove</code>方法中，添加 <code>element = null</code> 才能真正释放内存。</p>
+<h3 id="例2，未解绑事件监听函数"><a href="#例2，未解绑事件监听函数" class="headerlink" title="例2，未解绑事件监听函数"></a>例2，未解绑事件监听函数</h3><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line">element.innerHTML = <span class="string">"&lt;button id='btn'&gt;点击btn&lt;/button&gt;"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>)</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line">element.innerHTML = <span class="string">''</span></span><br></pre></td></tr></table></figure>
+
+<p>除了和 例1 一样的情况：<code>btn</code> 变量对应的元素所占用的内存外，还有一个事件解绑的问题。</p>
+<details>
+  <summary>为什么要将事件解绑？</summary>
+
+<blockquote>
+<p>个人理解：解绑后对应的事件监听函数的引用就会为 0，才可以被垃圾回收。所以也需要对事件解绑。</p>
+</blockquote>
+</details>
+
+<p>针对本例，元素已经从 DOM Tree 中移除时，可以使用 <code>btn = null</code> 直接解绑。</p>
+<p>这里涉及事件监听绑定与解绑问题。</p>
+<h4 id="事件绑定问题："><a href="#事件绑定问题：" class="headerlink" title="事件绑定问题："></a>事件绑定问题：</h4><ol>
+<li>传入匿名函数的方式，绑定时最简单。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line"></span><br><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>但解绑比较困难，下面的代码无效：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上面的情况，如果要解绑：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">element = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>传入已声明的函数</li>
+</ol>
+<p>下面的情况，是否需要设置： <code>element = null</code> 看具体情况吧，毕竟 DOM Tree 中的元素没有移除，还不知道该变量是否还会用到。</p>
+<blockquote>
+<p>如果不再使用，建议 <code>element = null</code>。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> handleListener = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="comment">// function handleListener () &#123;</span></span><br><span class="line"><span class="comment">//  console.log(1)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">element.addEventListener(<span class="string">'click'</span>, handleListener)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以直接解绑</span></span><br><span class="line">element.removeEventListener(<span class="string">'click'</span>, handleListener);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如果是一次性的绑定</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line"></span><br><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//do sth</span></span><br><span class="line">  <span class="keyword">this</span>.removeEventListener(<span class="string">'click'</span>, a)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何在页面上查看元素的事件绑定？"><a href="#如何在页面上查看元素的事件绑定？" class="headerlink" title="如何在页面上查看元素的事件绑定？"></a>如何在页面上查看元素的事件绑定？</h4><p>2种方式</p>
+<ul>
+<li><code>getEventListeners</code> API</li>
+<li>控制台查看。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> a = <span class="built_in">document</span>.getElementById(<span class="string">'a'</span>)</span></span><br><span class="line"><span class="handlebars"><span class="xml">    a.innerHTML = '<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>点击btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span>'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>)</span></span><br><span class="line"><span class="actionscript">    btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'btn'</span>)</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    a.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span></span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>通过 <code>getEventListeners</code> API</li>
+</ol>
+<blockquote>
+<p><code>getEventListeners($0)</code>，其中 <code>$0</code> 表示当前选中的页面元素。</p>
+</blockquote>
+<video controls>
+  <source src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/getEventListener.mp4" type="video/mp4">
+  <p>Your browser doesn't support HTML5 video. Here is
+     a <a href="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/getEventListener.mp4" target="_blank" rel="noopener">link to the video</a> instead.</p>
+</video>
+
+<ol start="2">
+<li>控制台查看 Event Listeners 选项</li>
+</ol>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/006EventListener.jpg" width="450" />
+
+<h3 id="例3，绑定到-window-对象上"><a href="#例3，绑定到-window-对象上" class="headerlink" title="例3，绑定到 window 对象上"></a>例3，绑定到 window 对象上</h3><p>对 <code>window</code> 对象新增属性时，如果是实际需求还好说，如果本意不是如此，那就会有内存泄漏的风险。</p>
+<blockquote>
+<p>因为 <code>window</code> 是全局对象，新增的属性意味着关闭当前页面才能释放所占内存。</p>
+</blockquote>
+<ol>
+<li>全局调用函数，<a href="https://www.crane0.com/2020/04/20/this指向" target="_blank" rel="noopener">this</a> 指向 <code>window</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'crane0'</span></span><br><span class="line">&#125;</span><br><span class="line">name()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>未使用关键子定义的变量</li>
+</ol>
+<p>默认也是将 <code>name</code> 变量定义到 <code>window</code> 的属性上。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  name = <span class="string">'crane0'</span></span><br><span class="line">&#125;</span><br><span class="line">name()</span><br></pre></td></tr></table></figure>
+
+<h3 id="例4，未销毁的定时器"><a href="#例4，未销毁的定时器" class="headerlink" title="例4，未销毁的定时器"></a>例4，未销毁的定时器</h3><p>定时器不销毁的话，即便定时器函数执行完成不再使用了，定时器和定时器中所依赖的变量也无法回收。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> obj = &#123; <span class="attr">name</span>: <span class="string">'crane0'</span> &#125;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">const</span> a = obj</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+
+<p>由于 window.setTimeout 的存在，导致 <code>obj</code> 内存空间始终无法被释放，如果不是业务要求的话，应该在合适的时机使用 clearTimeout 进行清理。</p>
+<h3 id="例5，闭包"><a href="#例5，闭包" class="headerlink" title="例5，闭包"></a>例5，闭包</h3><p>闭包使用不当，也容易引起内存泄露。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="string">'crane0'</span></span><br><span class="line">  <span class="keyword">return</span> inner() &#123; </span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> inner = foo()</span><br></pre></td></tr></table></figure>
+
+<p>变量 <code>name</code> 将会保存在内存中，直到 <code>inner</code> 不在被引用，<code>name</code>也才会被清除。</p>
+<h1 id="解决内存泄露"><a href="#解决内存泄露" class="headerlink" title="解决内存泄露"></a>解决内存泄露</h1><p>在内存泄露的的场景中，已经演示了如何避免内存泄露。</p>
+<p>其实不管是基本数据类型，还是引用数据类型的变量，都可以将 <code>null</code> 赋值给它，使改变量的引用次数为 0 即可。</p>
+<p>完。</p>
+]]></content>
+      <categories>
+        <category>JavaScript 核心</category>
+      </categories>
+      <tags>
+        <tag>性能优化</tag>
+        <tag>垃圾回收</tag>
+        <tag>事件监听</tag>
+        <tag>内存泄露</tag>
       </tags>
   </entry>
   <entry>
@@ -585,7 +779,7 @@
 <h1 id="调用栈"><a href="#调用栈" class="headerlink" title="调用栈"></a>调用栈</h1><p>函数之间的调用发生嵌套时，就会形成一些列的调用栈。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo2()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo3()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  foo4()</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">debugger</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'foo4'</span>)</span><br><span class="line">&#125;</span><br><span class="line">foo1()</span><br></pre></td></tr></table></figure>
 
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/2.jpg" width="50%" />
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/2.jpg" width="450" />
 
 <div class="note warning">
             <p>一般来说，在函数执行完毕并出栈后，函数内局部变量在下一个垃圾回收节点会被回收，该函数对应的执行上下文将会被销毁，这也正是在外部无法访问函数内定义的变量的原因。<br>也就是说，只有在函数执行时，相关函数才可以访问该变量，该变量在预编译阶段进行创建，在执行阶段进行激活，在函数执行完毕后，相关上下文被销毁。</p>
@@ -603,7 +797,7 @@
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line">  num++</span><br><span class="line">  <span class="keyword">debugger</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> getNum = numGenerator()</span><br><span class="line">getNum()</span><br></pre></td></tr></table></figure>
 
 <p>可以看到，numGenerator 函数执行完毕出栈后，变量 num 不会消失，成为一个 Closure，仍然可以被外界访问。</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/3.jpg" width="50%" />
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/3.jpg" width="450" />
 
 <p>上面说到在正常情况下，函数执行完毕后上下文即被销毁，函数内局部变量在下一个垃圾回收节点会被回收。</p>
 <div class="note info">
@@ -617,55 +811,6 @@
       </categories>
       <tags>
         <tag>变量提升</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>base64编解码</title>
-    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
-    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
-<a id="more"></a>
-
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具方法</category>
-      </categories>
-      <tags>
-        <tag>工具方法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>提升</title>
-    <url>/2020/04/23/%E6%8F%90%E5%8D%87/</url>
-    <content><![CDATA[<p>涉及变量和函数提升。</p>
-<a id="more"></a>
-
-<h1 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h1><p>当通过 <code>var</code> 声明变量和赋值时，只会将<strong>声明</strong>进行提升到<strong>本层作用域</strong>最顶层。</p>
-<p>并且不会被 <code>if else</code> 影响。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(bar)</span><br><span class="line">  <span class="keyword">if</span> (bar &gt; <span class="number">4</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> bar = <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<p>因为 bar 在函数内部会提升到顶层，所以相当于</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> bar</span><br><span class="line">  <span class="built_in">console</span>.log(bar)</span><br><span class="line">  <span class="keyword">if</span> (bar &gt; <span class="number">4</span>) &#123;</span><br><span class="line">    bar = <span class="number">3</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">foo() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="函数提升"><a href="#函数提升" class="headerlink" title="函数提升"></a>函数提升</h1><p>函数的声明有 2 种方式</p>
-<h2 id="函数表达式"><a href="#函数表达式" class="headerlink" title="函数表达式"></a>函数表达式</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>相当于变量的提升。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> fn</span><br><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// undefined</span></span><br><span class="line">fn = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="函数式声明"><a href="#函数式声明" class="headerlink" title="函数式声明"></a>函数式声明</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// ƒ fn() &#123;&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>相当于</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params"></span>) </span>&#123;&#125; </span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(fn) <span class="comment">// ƒ fn() &#123;&#125;</span></span><br></pre></td></tr></table></figure>
-
-<div class="note info">
-            <p>提升优先级：函数式声明 &gt; 变量</p>
-          </div>]]></content>
-      <categories>
-        <category>JavaScript 核心</category>
-      </categories>
-      <tags>
-        <tag>提升</tag>
       </tags>
   </entry>
 </search>

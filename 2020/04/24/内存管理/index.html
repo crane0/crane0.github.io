@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32*32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16*16.png">
+  <link rel="mask-icon" href="/images/favicon-32*32.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crane0.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="js 依赖宿主浏览器的垃圾回收机制，释放内存的释放一般情况下不需要程序员关心。但某些情况下还是需要注意，否则会出现内存泄漏现象。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存管理">
+<meta property="og:url" content="http://crane0.github.io/2020/04/24/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="crane0 的博客">
+<meta property="og:description" content="js 依赖宿主浏览器的垃圾回收机制，释放内存的释放一般情况下不需要程序员关心。但某些情况下还是需要注意，否则会出现内存泄漏现象。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/4.jpg">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/5.jpg">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/006EventListener.jpg">
+<meta property="article:published_time" content="2020-04-24T02:46:33.000Z">
+<meta property="article:modified_time" content="2020-04-24T16:30:05.467Z">
+<meta property="article:author" content="crane0">
+<meta property="article:tag" content="性能优化">
+<meta property="article:tag" content="垃圾回收">
+<meta property="article:tag" content="事件监听">
+<meta property="article:tag" content="内存泄露">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/4.jpg">
+
+<link rel="canonical" href="http://crane0.github.io/2020/04/24/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>内存管理 | crane0 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">crane0 的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人们都叫我疯子，艺术家都是疯子</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crane0/crane0.github.io" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crane0.github.io/2020/04/24/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="crane0">
+      <meta itemprop="description" content="前端成长之路">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="crane0 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          内存管理
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-24 10:46:33" itemprop="dateCreated datePublished" datetime="2020-04-24T10:46:33+08:00">2020-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-25 00:30:05" itemprop="dateModified" datetime="2020-04-25T00:30:05+08:00">2020-04-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript-%E6%A0%B8%E5%BF%83/" itemprop="url" rel="index"><span itemprop="name">JavaScript 核心</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>js 依赖宿主浏览器的垃圾回收机制，释放内存的释放一般情况下不需要程序员关心。但某些情况下还是需要注意，否则会出现内存泄漏现象。</p>
+<a id="more"></a>
+
+<blockquote>
+<p>内存管理是指对内存生命周期的管理。</p>
+</blockquote>
+<p>内存生命周期：分配内存 –&gt; 使用（读写）内存 –&gt; 释放内存</p>
+<h1 id="栈空间和堆空间"><a href="#栈空间和堆空间" class="headerlink" title="栈空间和堆空间"></a>栈空间和堆空间</h1><p>内存空间的分为：栈空间和堆空间。</p>
+<p>在 js 中的，数据类型分为基本和引用数据类型。</p>
+<ul>
+<li>栈空间，存放基本数据类型。</li>
+<li>堆空间，存放引用数据类型。</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">1</span></span><br><span class="line"><span class="keyword">let</span> b = <span class="string">'crane0'</span></span><br><span class="line"><span class="keyword">let</span> c = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">let</span> d = &#123; <span class="attr">age</span>: <span class="number">18</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>内存分类图：</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/4.jpg" width="450" />
+
+<h1 id="垃圾回收机制"><a href="#垃圾回收机制" class="headerlink" title="垃圾回收机制"></a>垃圾回收机制</h1><p>2种算法</p>
+<ul>
+<li>引用计数</li>
+<li>标记清除</li>
+</ul>
+<blockquote>
+<p>从2012年起，所有现代浏览器都使用了标记-清除垃圾回收算法。</p>
+</blockquote>
+<p>标记清除算法把“对象是否不再需要”简化定义为“对象是否可以获得”。需要说明的一点是，因为“有零引用的对象”总是不可获得的。</p>
+<p>简单的理解：算法从“根”对象（js 中就是 window）定期的找所有引用的对象。</p>
+<p>垃圾回收器根据这个算法，可以找到所有可以获得和不可获得的对象。</p>
+<h1 id="内存泄露"><a href="#内存泄露" class="headerlink" title="内存泄露"></a>内存泄露</h1><p>概念：指内存空间已经不再使用，但因为某种原因没有得到释放的情况。</p>
+<p>危害：直接导致程序运行缓慢，甚至崩溃。</p>
+<h2 id="典型场景举例"><a href="#典型场景举例" class="headerlink" title="典型场景举例"></a>典型场景举例</h2><p>首选需要清楚2点：</p>
+<ul>
+<li>全局变量的生命周期会一直持续，直到页面卸载。</li>
+<li>局部变量的生命周期从执行函数开始，直到函数执行结束。（闭包情况特殊）</li>
+</ul>
+<h3 id="例1，获取了页面元素后赋值给变量，最后只在-DOM-Tree-中移除该元素。"><a href="#例1，获取了页面元素后赋值给变量，最后只在-DOM-Tree-中移除该元素。" class="headerlink" title="例1，获取了页面元素后赋值给变量，最后只在 DOM Tree 中移除该元素。"></a>例1，获取了页面元素后赋值给变量，最后只在 DOM Tree 中移除该元素。</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line">element.innerHTML = <span class="string">"阅读全文"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 移除 element 节点</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">remove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  element.parentNode.removeChild(element)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但声明的 <code>element</code> 对象还是在内存中，所以对应的元素占用的内存还是无法释放。</p>
+<blockquote>
+<p>这里默认的情况是，既然已经移除对应的页面元素，这个声明的变量也不会再使用了。</p>
+</blockquote>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/5.jpg" width="450" />
+
+<p>所以在 <code>remove</code>方法中，添加 <code>element = null</code> 才能真正释放内存。</p>
+<h3 id="例2，未解绑事件监听函数"><a href="#例2，未解绑事件监听函数" class="headerlink" title="例2，未解绑事件监听函数"></a>例2，未解绑事件监听函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line">element.innerHTML = <span class="string">"&lt;button id='btn'&gt;点击btn&lt;/button&gt;"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">"btn"</span>)</span><br><span class="line">btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br><span class="line">element.innerHTML = <span class="string">''</span></span><br></pre></td></tr></table></figure>
+
+<p>除了和 例1 一样的情况：<code>btn</code> 变量对应的元素所占用的内存外，还有一个事件解绑的问题。</p>
+<details>
+  <summary>为什么要将事件解绑？</summary>
+
+<blockquote>
+<p>个人理解：解绑后对应的事件监听函数的引用就会为 0，才可以被垃圾回收。所以也需要对事件解绑。</p>
+</blockquote>
+</details>
+
+<p>针对本例，元素已经从 DOM Tree 中移除时，可以使用 <code>btn = null</code> 直接解绑。</p>
+<p>这里涉及事件监听绑定与解绑问题。</p>
+<h4 id="事件绑定问题："><a href="#事件绑定问题：" class="headerlink" title="事件绑定问题："></a>事件绑定问题：</h4><ol>
+<li>传入匿名函数的方式，绑定时最简单。</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line"></span><br><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>但解绑比较困难，下面的代码无效：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>上面的情况，如果要解绑：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>传入已声明的函数</li>
+</ol>
+<p>下面的情况，是否需要设置： <code>element = null</code> 看具体情况吧，毕竟 DOM Tree 中的元素没有移除，还不知道该变量是否还会用到。</p>
+<blockquote>
+<p>如果不再使用，建议 <code>element = null</code>。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> handleListener = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 或</span></span><br><span class="line"><span class="comment">// function handleListener () &#123;</span></span><br><span class="line"><span class="comment">//  console.log(1)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">element.addEventListener(<span class="string">'click'</span>, handleListener)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 可以直接解绑</span></span><br><span class="line">element.removeEventListener(<span class="string">'click'</span>, handleListener);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如果是一次性的绑定</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> element = <span class="built_in">document</span>.getElementById(<span class="string">"more"</span>)</span><br><span class="line"></span><br><span class="line">element.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="title">a</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//do sth</span></span><br><span class="line">  <span class="keyword">this</span>.removeEventListener(<span class="string">'click'</span>, a)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="如何在页面上查看元素的事件绑定？"><a href="#如何在页面上查看元素的事件绑定？" class="headerlink" title="如何在页面上查看元素的事件绑定？"></a>如何在页面上查看元素的事件绑定？</h4><p>2种方式</p>
+<ul>
+<li><code>getEventListeners</code> API</li>
+<li>控制台查看。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span> <span class="attr">id</span>=<span class="string">"a"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> a = <span class="built_in">document</span>.getElementById(<span class="string">'a'</span>)</span></span><br><span class="line"><span class="handlebars"><span class="xml">    a.innerHTML = '<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>点击btn<span class="tag">&lt;/<span class="name">button</span>&gt;</span>'</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> btn = <span class="built_in">document</span>.getElementById(<span class="string">'btn'</span>)</span></span><br><span class="line"><span class="actionscript">    btn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'btn'</span>)</span></span><br><span class="line">    &#125;)</span><br><span class="line"><span class="actionscript">    a.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span> <span class="title">a</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(<span class="string">'a'</span>)</span></span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>通过 <code>getEventListeners</code> API</li>
+</ol>
+<blockquote>
+<p><code>getEventListeners($0)</code>，其中 <code>$0</code> 表示当前选中的页面元素。</p>
+</blockquote>
+<video controls>
+  <source src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/getEventListener.mp4" type="video/mp4">
+  <p>Your browser doesn't support HTML5 video. Here is
+     a <a href="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/getEventListener.mp4" target="_blank" rel="noopener">link to the video</a> instead.</p>
+</video>
+
+<ol start="2">
+<li>控制台查看 Event Listeners 选项</li>
+</ol>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/006EventListener.jpg" width="450" />
+
+<h3 id="例3，绑定到-window-对象上"><a href="#例3，绑定到-window-对象上" class="headerlink" title="例3，绑定到 window 对象上"></a>例3，绑定到 window 对象上</h3><p>对 <code>window</code> 对象新增属性时，如果是实际需求还好说，如果本意不是如此，那就会有内存泄漏的风险。</p>
+<blockquote>
+<p>因为 <code>window</code> 是全局对象，新增的属性意味着关闭当前页面才能释放所占内存。</p>
+</blockquote>
+<ol>
+<li>全局调用函数，<a href="https://www.crane0.com/2020/04/20/this指向" target="_blank" rel="noopener">this</a> 指向 <code>window</code></li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = <span class="string">'crane0'</span></span><br><span class="line">&#125;</span><br><span class="line">name()</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>未使用关键子定义的变量</li>
+</ol>
+<p>默认也是将 <code>name</code> 变量定义到 <code>window</code> 的属性上。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  name = <span class="string">'crane0'</span></span><br><span class="line">&#125;</span><br><span class="line">name()</span><br></pre></td></tr></table></figure>
+
+<h3 id="例4，未销毁的定时器"><a href="#例4，未销毁的定时器" class="headerlink" title="例4，未销毁的定时器"></a>例4，未销毁的定时器</h3><p>定时器不销毁的话，即便定时器函数执行完成不再使用了，定时器和定时器中所依赖的变量也无法回收。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> obj = &#123; <span class="attr">name</span>: <span class="string">'crane0'</span> &#125;</span><br><span class="line">  setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">   <span class="keyword">const</span> a = obj</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">foo()</span><br></pre></td></tr></table></figure>
+
+<p>由于 window.setTimeout 的存在，导致 <code>obj</code> 内存空间始终无法被释放，如果不是业务要求的话，应该在合适的时机使用 clearTimeout 进行清理。</p>
+<h3 id="例5，闭包"><a href="#例5，闭包" class="headerlink" title="例5，闭包"></a>例5，闭包</h3><p>闭包使用不当，也容易引起内存泄露。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> name = <span class="string">'crane0'</span></span><br><span class="line">  <span class="keyword">return</span> inner() &#123; </span><br><span class="line">    <span class="built_in">console</span>.log(name)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> inner = foo()</span><br></pre></td></tr></table></figure>
+
+<p>变量 <code>name</code> 将会保存在内存中，直到 <code>inner</code> 不在被引用，<code>name</code>也才会被清除。</p>
+<h1 id="解决内存泄露"><a href="#解决内存泄露" class="headerlink" title="解决内存泄露"></a>解决内存泄露</h1><p>在内存泄露的的场景中，已经演示了如何避免内存泄露。</p>
+<p>其实不管是基本数据类型，还是引用数据类型的变量，都可以将 <code>null</code> 赋值给它，使改变量的引用次数为 0 即可。</p>
+<p>完。</p>
+
+    </div>
+
+    
+    
+    
+      
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>crane0
+  </li>
+  <li class="post-copyright-link">
+    <strong>原始链接：</strong>
+    <a href="http://crane0.github.io/2020/04/24/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="内存管理">http://crane0.github.io/2020/04/24/内存管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本文章采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请保留原文链接及作者。
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag"># 性能优化</a>
+              <a href="/tags/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/" rel="tag"># 垃圾回收</a>
+              <a href="/tags/%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC/" rel="tag"># 事件监听</a>
+              <a href="/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/" rel="tag"># 内存泄露</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/23/%E6%8F%90%E5%8D%87/" rel="prev" title="提升">
+      <i class="fa fa-chevron-left"></i> 提升
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTYzMi8yNjEyMw"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#栈空间和堆空间"><span class="nav-number">1.</span> <span class="nav-text">栈空间和堆空间</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#垃圾回收机制"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收机制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存泄露"><span class="nav-number">3.</span> <span class="nav-text">内存泄露</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#典型场景举例"><span class="nav-number">3.1.</span> <span class="nav-text">典型场景举例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例1，获取了页面元素后赋值给变量，最后只在-DOM-Tree-中移除该元素。"><span class="nav-number">3.1.1.</span> <span class="nav-text">例1，获取了页面元素后赋值给变量，最后只在 DOM Tree 中移除该元素。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例2，未解绑事件监听函数"><span class="nav-number">3.1.2.</span> <span class="nav-text">例2，未解绑事件监听函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#事件绑定问题："><span class="nav-number">3.1.2.1.</span> <span class="nav-text">事件绑定问题：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何在页面上查看元素的事件绑定？"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">如何在页面上查看元素的事件绑定？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例3，绑定到-window-对象上"><span class="nav-number">3.1.3.</span> <span class="nav-text">例3，绑定到 window 对象上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例4，未销毁的定时器"><span class="nav-number">3.1.4.</span> <span class="nav-text">例4，未销毁的定时器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例5，闭包"><span class="nav-number">3.1.5.</span> <span class="nav-text">例5，闭包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决内存泄露"><span class="nav-number">4.</span> <span class="nav-text">解决内存泄露</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="crane0"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">crane0</p>
+  <div class="site-description" itemprop="description">前端成长之路</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crane0/crane0.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crane0&#x2F;crane0.github.io" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:bhad5683126@gmail.com" title="E-Mail → mailto:bhad5683126@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat" title="WeiXin → &#x2F;wechat"><i class="fab fa-weixin fa-fw"></i>WeiXin</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">crane0</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">20k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
