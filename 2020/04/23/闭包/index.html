@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/2.jpg">
 <meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/3.jpg">
 <meta property="article:published_time" content="2020-04-23T09:57:44.000Z">
-<meta property="article:modified_time" content="2020-04-24T09:34:57.608Z">
+<meta property="article:modified_time" content="2020-04-30T10:39:16.655Z">
 <meta property="article:author" content="crane0">
 <meta property="article:tag" content="变量提升">
 <meta name="twitter:card" content="summary">
@@ -233,7 +233,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-24 17:34:57" itemprop="dateModified" datetime="2020-04-24T17:34:57+08:00">2020-04-24</time>
+                <time title="修改时间：2020-04-30 18:39:16" itemprop="dateModified" datetime="2020-04-30T18:39:16+08:00">2020-04-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
+              <span>3.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -368,7 +368,7 @@
 <p>内层函数在全局环境下如何可访问 ?</p>
 <ul>
 <li>外层函数返回</li>
-<li></li>
+<li>将内层函数赋值给全部变量</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">numGenerator</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> num = <span class="number">1</span></span><br><span class="line">  num++</span><br><span class="line">  <span class="keyword">debugger</span></span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(num)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> getNum = numGenerator()</span><br><span class="line">getNum()</span><br></pre></td></tr></table></figure>
 
@@ -380,8 +380,17 @@
             <p>闭包的基本原理：在外层函数中如果返回了另一个函数，且这个返回的函数使用了外层函数内的变量，外界便能够通过这个返回的函数获取原外层函数内部的变量值。</p>
           </div>
 
-<h2 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h2><p>正在整理中。。。</p>
+<h2 id="典型例题和用途"><a href="#典型例题和用途" class="headerlink" title="典型例题和用途"></a>典型例题和用途</h2><h3 id="例题：函数调用位置"><a href="#例题：函数调用位置" class="headerlink" title="例题：函数调用位置"></a>例题：函数调用位置</h3><p>本文一开始就提到：<strong>作用域的位置和函数的调用位置无关。</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fn = <span class="literal">null</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">inner</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="built_in">console</span>.log(c)            </span><br><span class="line">        <span class="built_in">console</span>.log(a)</span><br><span class="line">    &#125;</span><br><span class="line">    fn = inner</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bar = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> c = <span class="number">100</span></span><br><span class="line">    fn()    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo()</span><br><span class="line">bar()</span><br></pre></td></tr></table></figure>
 
+<p>上面的代码会报错 <code>Uncaught ReferenceError: c is not defined</code>，</p>
+<p>因为调用 <code>c</code> 是 <code>bar</code> 函数的内部变量，<code>inner</code> 函数的作用域链并没有变量 <code>c</code></p>
+<h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><p>可以实现单例模式</p>
+<div class="note info">
+            <p>保障一个类只有一个实例，并提供一个访问它的全局访问点。</p>
+          </div>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.name = <span class="string">'crane0'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> singleFun = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> singlePerson</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!singlePerson) &#123;</span><br><span class="line">      singlePerson = <span class="keyword">new</span> Person()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> singlePerson</span><br><span class="line">  &#125;</span><br><span class="line">&#125;()</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> instance1 = <span class="keyword">new</span> singleFun()</span><br><span class="line"><span class="keyword">const</span> instance2 = <span class="keyword">new</span> singleFun()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(instance1 === instance2) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -488,7 +497,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局作用域和函数作用域"><span class="nav-number">1.1.</span> <span class="nav-text">全局作用域和函数作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级作用域"><span class="nav-number">1.2.</span> <span class="nav-text">块级作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量提升"><span class="nav-number">1.2.1.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暂时性死区"><span class="nav-number">1.2.2.</span> <span class="nav-text">暂时性死区</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行上下文"><span class="nav-number">2.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码执行的-2-个阶段"><span class="nav-number">2.1.</span> <span class="nav-text">代码执行的 2 个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码预编译阶段"><span class="nav-number">2.1.1.</span> <span class="nav-text">代码预编译阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码执行阶段"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码执行阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用栈"><span class="nav-number">3.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">4.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用途"><span class="nav-number">4.1.</span> <span class="nav-text">用途</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#作用域"><span class="nav-number">1.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#全局作用域和函数作用域"><span class="nav-number">1.1.</span> <span class="nav-text">全局作用域和函数作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#块级作用域"><span class="nav-number">1.2.</span> <span class="nav-text">块级作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量提升"><span class="nav-number">1.2.1.</span> <span class="nav-text">变量提升</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暂时性死区"><span class="nav-number">1.2.2.</span> <span class="nav-text">暂时性死区</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#执行上下文"><span class="nav-number">2.</span> <span class="nav-text">执行上下文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码执行的-2-个阶段"><span class="nav-number">2.1.</span> <span class="nav-text">代码执行的 2 个阶段</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码预编译阶段"><span class="nav-number">2.1.1.</span> <span class="nav-text">代码预编译阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码执行阶段"><span class="nav-number">2.1.2.</span> <span class="nav-text">代码执行阶段</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#调用栈"><span class="nav-number">3.</span> <span class="nav-text">调用栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#闭包"><span class="nav-number">4.</span> <span class="nav-text">闭包</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#典型例题和用途"><span class="nav-number">4.1.</span> <span class="nav-text">典型例题和用途</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#例题：函数调用位置"><span class="nav-number">4.1.1.</span> <span class="nav-text">例题：函数调用位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用途"><span class="nav-number">4.1.2.</span> <span class="nav-text">用途</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -565,7 +574,7 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">21k</span>
 </div>
 
         
