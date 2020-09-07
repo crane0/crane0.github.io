@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon-32*32.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32*32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16*16.png">
+  <link rel="mask-icon" href="/images/favicon-32*32.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"crane0.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"flat"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="简单介绍浏览器如何渲染 html, css, js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="资源的渲染">
+<meta property="og:url" content="http://crane0.github.io/2020/09/07/%E8%B5%84%E6%BA%90%E7%9A%84%E6%B8%B2%E6%9F%93/index.html">
+<meta property="og:site_name" content="crane0 的博客">
+<meta property="og:description" content="简单介绍浏览器如何渲染 html, css, js">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115024.png">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115129.png">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115205.png">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115229.png">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115305.png">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115338.png">
+<meta property="og:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115411.png">
+<meta property="article:published_time" content="2020-09-07T03:42:14.000Z">
+<meta property="article:modified_time" content="2020-09-07T03:57:14.102Z">
+<meta property="article:author" content="crane0">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115024.png">
+
+<link rel="canonical" href="http://crane0.github.io/2020/09/07/%E8%B5%84%E6%BA%90%E7%9A%84%E6%B8%B2%E6%9F%93/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>资源的渲染 | crane0 的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">crane0 的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">人们都叫我疯子，艺术家都是疯子</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/crane0/crane0.github.io" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://crane0.github.io/2020/09/07/%E8%B5%84%E6%BA%90%E7%9A%84%E6%B8%B2%E6%9F%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="crane0">
+      <meta itemprop="description" content="前端成长之路">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="crane0 的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          资源的渲染
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-07 11:42:14 / 修改时间：11:57:14" itemprop="dateCreated datePublished" datetime="2020-09-07T11:42:14+08:00">2020-09-07</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>简单介绍浏览器如何渲染 html, css, js</p>
+<a id="more"></a>
+
+<h1 id="1，构建DOM树"><a href="#1，构建DOM树" class="headerlink" title="1，构建DOM树"></a>1，构建DOM树</h1><p>HTML解析器，会将 HTML 解析为 DOM 树，浏览器才能识别。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115024.png" width="450" />
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span></span><br></pre></td></tr></table></figure>
+
+<p>DOM 树，是保存在内存中树状结构，通过 JavaScript 来查询或修改其内容。</p>
+<h1 id="2，样式计算"><a href="#2，样式计算" class="headerlink" title="2，样式计算"></a>2，样式计算</h1><h2 id="2-1，解析-CSS-文本"><a href="#2-1，解析-CSS-文本" class="headerlink" title="2.1，解析 CSS 文本"></a>2.1，解析 CSS 文本</h2><p>CSS 来源：</p>
+<ul>
+<li>link</li>
+<li>style 标签</li>
+<li>内联样式</li>
+</ul>
+<p>渲染引擎会将 link 和 style 标签的 cssText 解析放入 styleSheets，内联样式放入 CSSStyleDeclaration</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.styleSheets</span><br><span class="line"></span><br><span class="line">element.style</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最终，可以通过 <code>window.getComputedStyle()</code> 获取所有的 CSS属性。</p>
+</blockquote>
+<h2 id="2-2，属性值标准化"><a href="#2-2，属性值标准化" class="headerlink" title="2.2，属性值标准化"></a>2.2，属性值标准化</h2><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115129.png" width="450" />
+
+<p>虽然在浏览器中查看时，还是原来的属性值，但浏览器渲染时用的都是标准化的属性值。</p>
+<h2 id="2-3，计算-DOM-树中每个节点的样式"><a href="#2-3，计算-DOM-树中每个节点的样式" class="headerlink" title="2.3，计算 DOM 树中每个节点的样式"></a>2.3，计算 DOM 树中每个节点的样式</h2><p>这里涉及样式继承，优先级（来源）等问题，不做考虑。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115205.png" width="450" />
+
+<h1 id="3，布局"><a href="#3，布局" class="headerlink" title="3，布局"></a>3，布局</h1><p>计算出 DOM 树中可见元素的几何位置。</p>
+<p>DOM 树中，有的标签是不展示的</p>
+<ul>
+<li>head</li>
+<li>display: none 的元素</li>
+</ul>
+<p>所以，还得有一个 <strong>布局（渲染）树</strong></p>
+<blockquote>
+<p>相对于DOM 树，就是去掉了不展示的标签。</p>
+</blockquote>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115229.png" width="450" />
+
+<h1 id="4，分层"><a href="#4，分层" class="headerlink" title="4，分层"></a>4，分层</h1><p>浏览器的页面实际上会被分成很多个图层，这些图层叠加后合成了最终的页面。（和 PS 中差不多）</p>
+<p>页面中会有很多复杂的效果，3D 变换，甚至页面滚动等。渲染引擎会为这些特定的节点，生成专用的图层，并生成一棵图层树（LayerTree）</p>
+<p><strong>chrome 的 Layer标签</strong> 可以看到图层最终的分层效果。</p>
+<h2 id="4-1，如何分层？"><a href="#4-1，如何分层？" class="headerlink" title="4.1，如何分层？"></a>4.1，如何分层？</h2><ol>
+<li>拥有<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" target="_blank" rel="noopener">层叠上下文</a>属性的元素会被提升为单独的一层。<br>但经测试，只有下面的会被分层</li>
+</ol>
+<ul>
+<li>transform: translateY 和 Z，X不会。</li>
+<li>transform: rotate 相关</li>
+<li>filter: blur(5px);</li>
+<li>will-change: transform;</li>
+</ul>
+<ol start="2">
+<li>滚动条是单独一层。</li>
+<li>需要剪裁（clip）的地方也会被创建为图层。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.text</span> &#123;</span></span><br><span class="line">      width: 100px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">      background-color: aquamarine;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5，绘制和栅格化"><a href="#5，绘制和栅格化" class="headerlink" title="5，绘制和栅格化"></a>5，绘制和栅格化</h1><p>绘制对应的有指令，比如先指定坐标，画一个矩形，填充颜色。这些指令会生成一个绘制列表，交给<strong>合成线程</strong>绘制。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115305.png" width="450" />
+
+<p>因为浏览器的视口大小是固定的，但页面的内容可能会有很多，会出现滚动条。所以，不会一次性绘制出所有的内容。</p>
+<p>基于这个原因，<strong>合成线程会将图层划分为图块</strong>。图块的大小也不固定，可以在 Layer 标签中看到。</p>
+<p>合成线程会优先对视口附近的图块进行<strong>栅格化</strong>，也就是将图块绘制成位图。</p>
+<blockquote>
+<p>栅格化通常会用到 GPU，生成的位图也都在GPU的内存中。</p>
+</blockquote>
+<p>==注意==，上面所说的不会一次性绘制出所有的内容，是指不会在一个图块上绘制所有的内容。</p>
+<h1 id="6，合成展示"><a href="#6，合成展示" class="headerlink" title="6，合成展示"></a>6，合成展示</h1><p>当所有的图块都栅格化后，合成线程会生成一个绘制图块的命令——“DrawQuad”，并将该命令提交给浏览器进程。</p>
+<p>浏览器进程中的 viz 组件根据 DrawQuad 命令，将其页面内容绘制到内存中，最后再将内存显示在屏幕上。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115338.png" width="450" />
+
+<h1 id="7，其他问题"><a href="#7，其他问题" class="headerlink" title="7，其他问题"></a>7，其他问题</h1><h2 id="7-1，重绘重排"><a href="#7-1，重绘重排" class="headerlink" title="7.1，重绘重排"></a>7.1，重绘重排</h2><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115411.png" width="450" />
+
+<ul>
+<li>解析 DOM</li>
+<li>解析 CSS</li>
+<li>布局</li>
+<li>分层</li>
+<li>绘制</li>
+<li>合成展示<ul>
+<li>图块</li>
+<li>栅格化</li>
+<li>draw quad</li>
+<li>展示</li>
+</ul>
+</li>
+</ul>
+<p>1，修改了元素的几何属性，会触发重排等后面一系列操作。</p>
+<p>2，修改了颜色等，没有影响到几何属性时，会触发重绘等后面一系列操作。</p>
+<p>3，部分属性，比如 transform ，不会触发重绘重排。直接进入合成展示。</p>
+<p>所以，为了减少重绘重排</p>
+<ul>
+<li>使用 class，而不是频繁操作 style<blockquote>
+<p>如果添加多个样式，一个class，比多次 element.style 强的多。而且就算是一个样式，也保不准之后不会再添加新的样式。</p>
+</blockquote>
+</li>
+<li>批量 DOM 操作时，使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createDocumentFragment" target="_blank" rel="noopener">createDocumentFragment</a></li>
+<li>will-change: transform 可以强制使用 GPU<blockquote>
+<p>GPU是专为执行复杂的数学和几何计算而设计的，可以让CPU从图形处理的任务中解放出来，从而执行其他更多的系统任务，例如，页面的计算与重绘。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-2，阻塞问题"><a href="#7-2，阻塞问题" class="headerlink" title="7.2，阻塞问题"></a>7.2，阻塞问题</h2><p><a href="https://juejin.im/post/6844903667733118983" target="_blank" rel="noopener">参考</a></p>
+<p>1，js 文件下载和执行，会阻塞 DOM 树的解析。</p>
+<p>2，css 文件 和 js 文件会阻塞DOM树吗？</p>
+<ul>
+<li>css加载不会阻塞DOM树解析，但是会阻塞DOM树渲染。</li>
+</ul>
+<p>如果不阻塞渲染，可能会多次渲染。</p>
+<blockquote>
+<p>DOM解析和CSS解析是两个并行的进程</p>
+</blockquote>
+<ul>
+<li>css加载会阻塞后面的js语句的执行。</li>
+</ul>
+<p>因为可能后面的 js 会操作 CSS</p>
+
+    </div>
+
+    
+    
+    
+      
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>crane0
+  </li>
+  <li class="post-copyright-link">
+    <strong>原始链接：</strong>
+    <a href="http://crane0.github.io/2020/09/07/%E8%B5%84%E6%BA%90%E7%9A%84%E6%B8%B2%E6%9F%93/" title="资源的渲染">http://crane0.github.io/2020/09/07/资源的渲染/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本文章采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议，转载请保留原文链接及作者。
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/20/scrollIntoView%E7%9A%84%E9%97%AE%E9%A2%98/" rel="prev" title="scrollIntoView的问题">
+      <i class="fa fa-chevron-left"></i> scrollIntoView的问题
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80OTYzMi8yNjEyMw"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1，构建DOM树"><span class="nav-number">1.</span> <span class="nav-text">1，构建DOM树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2，样式计算"><span class="nav-number">2.</span> <span class="nav-text">2，样式计算</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1，解析-CSS-文本"><span class="nav-number">2.1.</span> <span class="nav-text">2.1，解析 CSS 文本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2，属性值标准化"><span class="nav-number">2.2.</span> <span class="nav-text">2.2，属性值标准化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3，计算-DOM-树中每个节点的样式"><span class="nav-number">2.3.</span> <span class="nav-text">2.3，计算 DOM 树中每个节点的样式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3，布局"><span class="nav-number">3.</span> <span class="nav-text">3，布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4，分层"><span class="nav-number">4.</span> <span class="nav-text">4，分层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1，如何分层？"><span class="nav-number">4.1.</span> <span class="nav-text">4.1，如何分层？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5，绘制和栅格化"><span class="nav-number">5.</span> <span class="nav-text">5，绘制和栅格化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6，合成展示"><span class="nav-number">6.</span> <span class="nav-text">6，合成展示</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#7，其他问题"><span class="nav-number">7.</span> <span class="nav-text">7，其他问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1，重绘重排"><span class="nav-number">7.1.</span> <span class="nav-text">7.1，重绘重排</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2，阻塞问题"><span class="nav-number">7.2.</span> <span class="nav-text">7.2，阻塞问题</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="crane0"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">crane0</p>
+  <div class="site-description" itemprop="description">前端成长之路</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">22</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/crane0/crane0.github.io" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;crane0&#x2F;crane0.github.io" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:bhad5683126@gmail.com" title="E-Mail → mailto:bhad5683126@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/wechat" title="WeiXin → &#x2F;wechat"><i class="fab fa-weixin fa-fw"></i>WeiXin</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">crane0</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">26k</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+NexT.utils.loadComments(document.querySelector('#lv-container'), () => {
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+});
+</script>
+
+</body>
+</html>
