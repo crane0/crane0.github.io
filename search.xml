@@ -1,54 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/04/14/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<a id="more"></a>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
+    <title>reduce的使用和实现</title>
+    <url>/2020/05/08/reduce%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<p>这是 reduce</p>
+<p>typeof undefined 和直接判断 undefined 的区别，主要体现在如果变量未定义，</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> crane === <span class="string">'undefined'</span> <span class="comment">// true</span></span><br><span class="line">crane === <span class="literal">undefined</span> <span class="comment">// 报错 crane is not defined</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>JavaScript 核心</category>
+      </categories>
       <tags>
-        <tag>hello</tag>
+        <tag>array</tag>
+        <tag>JavaScript 核心</tag>
       </tags>
   </entry>
   <entry>
-    <title>hexo_next建站_站点概览模块</title>
-    <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E7%AB%99%E7%82%B9%E6%A6%82%E8%A7%88%E6%A8%A1%E5%9D%97/</url>
-    <content><![CDATA[<p>hexo_next建站，站点概览模块</p>
+    <title>合并代码时要注意的问题</title>
+    <url>/2021/10/25/%E5%90%88%E5%B9%B6%E4%BB%A3%E7%A0%81%E6%97%B6%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>介绍合并代码时要注意的问题，git rebase 能做什么？</p>
 <a id="more"></a>
 
-<h1 id="站点概览"><a href="#站点概览" class="headerlink" title="站点概览"></a>站点概览</h1><h2 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h2><p>在主题配置中，搜索 <code>avatar</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.jpg</span><br><span class="line">  rounded: true</span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+<h1 id="1，commit为什么要一条线"><a href="#1，commit为什么要一条线" class="headerlink" title="1，commit为什么要一条线"></a>1，commit为什么要一条线</h1><p>因为在一条线上后，如果遇到了bug 或是其他暂时解决不了的问题时，方便进行<strong>版本回退</strong>。</p>
+<h1 id="2，如何做"><a href="#2，如何做" class="headerlink" title="2，如何做"></a>2，如何做</h1><p><strong>工作区 –add–&gt; 暂存区 –commit–&gt; 版本库</strong></p>
+<h2 id="2-1，使用-stash"><a href="#2-1，使用-stash" class="headerlink" title="2.1，使用 stash"></a>2.1，使用 stash</h2><blockquote>
+<p>这种方式比较适合：多人是在<strong>同一分支</strong>上做修改。</p>
+</blockquote>
+<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><p>1，先将本地的修改添加到<strong>暂存区</strong>，并且放到垃圾箱中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git stash</span><br></pre></td></tr></table></figure>
+<p>2，拉取远程代码后，本地代码就是最新的了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
 
-<h2 id="头像下的个人介绍"><a href="#头像下的个人介绍" class="headerlink" title="头像下的个人介绍"></a>头像下的个人介绍</h2><p>在blog 根目录的配置文件 <code>_config.yml</code> 中，设置 <code>description</code> 即可。</p>
-<h2 id="其他个人链接"><a href="#其他个人链接" class="headerlink" title="其他个人链接"></a>其他个人链接</h2><p>在主题配置中，搜索 <code>social</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;crane0 || fab fa-github</span><br><span class="line">  E-Mail: mailto:bhad5683126@gmail.com || fa fa-envelope</span><br><span class="line">  WeiXin: &#x2F;wechat || fa fa-weixin</span><br></pre></td></tr></table></figure>
+<p>3，将垃圾箱中的代码取出，此时有冲突解决就可以了。</p>
+<blockquote>
+<p>注意刚刚放到垃圾箱中的，现在是被当做<strong>新的代码</strong>。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
 
+<h3 id="注意问题"><a href="#注意问题" class="headerlink" title="注意问题"></a>注意问题</h3><p>1，如果代码add后，又commit到了版本库，就不能使用 stash 这种方法了。</p>
+<p>解决办法：先回退到 add 后的状态，也就是撤销刚刚的 commit</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git reset --soft HEAD^</span><br></pre></td></tr></table></figure>
+<p>再按照上述步骤执行即可。</p>
+<h2 id="2-2，使用-rebase"><a href="#2-2，使用-rebase" class="headerlink" title="2.2，使用 rebase"></a>2.2，使用 rebase</h2><h3 id="情况1，同一条分支多人开发"><a href="#情况1，同一条分支多人开发" class="headerlink" title="情况1，同一条分支多人开发"></a>情况1，同一条分支多人开发</h3><p>A先做了修改，并提交到远程。B的做法应该如下：</p>
+<p>1，先提交本地的修改</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;x&quot;</span><br></pre></td></tr></table></figure>
+<p>2，拉取远程的修改(不合并)</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git fetch</span><br></pre></td></tr></table></figure>
+<p>3，开始变基</p>
+<ul>
+<li>如果在变基过程中，自己有点搞乱了，或者不知道怎么继续操作了，可以<code>git rebase --abort</code> 退出变基操作，则所有变基期间做的操作全部取消，状态回到第2步时的状态。</li>
+<li>如果变基过程中因为操作失误，而退出了刚刚的编辑页面，可以<code>git rebase --edit-todo</code> 回到刚刚的编辑页面继续操作。<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rebase</span><br></pre></td></tr></table></figure>
+4，此时如果有冲突，变基会被打断！这里先解决冲突，并将所做修改添加到暂存区<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br></pre></td></tr></table></figure>
+5，继续变基<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rebase --continue</span><br></pre></td></tr></table></figure>
 
-<h2 id="个人微信二维码"><a href="#个人微信二维码" class="headerlink" title="个人微信二维码"></a>个人微信二维码</h2><p>因为需要展示一个图片，而原有的配置都是链接，</p>
-<p>所以换个思路，新建一个路由，该页面只放一个图片即可。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page wechat</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>第4，5步可能会多次重复执行</p>
+<p>如果出现了 Successfully rebased and updated xxxx<br>，说明操作成功了！</p>
+<p>这时查看 log 就会发现第1步中的commit在最新的位置处，并且远程的修改也按顺序排好了。</p>
+<p>变基操作完成，可直接执行 push 操作了。</p>
+<hr>
+<p>另外，上面的第1，2，3步骤，可以通过配置进行合并执行。</p>
+<p>执行如下命令后，可以让每次的<code>git pull</code> 操作 的时候自动 rebase</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git config pull.rebase true</span><br></pre></td></tr></table></figure>
 
-<p>在 <code>source</code> 目录下会新建一个文件夹，放入二维码图片，</p>
-<p>修改 <code>wechat/index.md</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 扫描下面二维码添加微信</span><br><span class="line">---</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;wechat-pr.jpg&quot; style&#x3D;&quot;text-align:center; margin: auto; width: 150px&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>]]></content>
+<blockquote>
+<p>要回到默认的配置，执行<code>git config pull.rebase false</code></p>
+</blockquote>
+<h3 id="情况2，母分支被超前"><a href="#情况2，母分支被超前" class="headerlink" title="情况2，母分支被超前"></a>情况2，母分支被超前</h3><ul>
+<li>A基于 master 切出了分支 app，开始开发。</li>
+<li>B也基于 master 切出了分支 fix-app，用于修改线上一个小 bug，并且修改完之后 merge 到 master了。</li>
+</ul>
+<p>对于 A 来说，应该这么做：</p>
+<p>1，先提交本地</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;x&quot;</span><br></pre></td></tr></table></figure>
+
+<p>2，切换到母分支 master，拉取代码。因为本地 master 未做修改，所以可直接使用 pull，不用担心出现合并问题。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull</span><br></pre></td></tr></table></figure>
+<p>而 1，2 步骤可以用一句命令合并。</p>
+<blockquote>
+<p>git pull &lt;远程库名&gt; &lt;远程分支名&gt;:&lt;本地分支名&gt;  </p>
+</blockquote>
+<p>（此时本地是app分支）也就是说，将远程的master 分支拉取到本地的 master，并直接合并。<strong>注意</strong>，<code>:master</code> 不能省略，否则就是和<strong>本地当前分支</strong>合并了。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git pull origin master:master</span><br></pre></td></tr></table></figure>
+
+<p>3，开始变基（此时在app分支）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rebase -i master</span><br></pre></td></tr></table></figure>
+
+<p>4，剩下的操作和情况1中的相同。</p>
+<h1 id="3，rebase-还能做什么事"><a href="#3，rebase-还能做什么事" class="headerlink" title="3，rebase 还能做什么事"></a>3，rebase 还能做什么事</h1><h2 id="1，可以修改某次的-commit-message"><a href="#1，可以修改某次的-commit-message" class="headerlink" title="1，可以修改某次的 commit message"></a>1，可以修改某次的 commit message</h2><p>比如 log 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第5次   55555 （commit hash）</span><br><span class="line">第4次   44444</span><br><span class="line">第3次   33333</span><br><span class="line">第2次   22222</span><br><span class="line">第1次   11111</span><br></pre></td></tr></table></figure>
+
+<h3 id="如果要修改第5次的（最近的一次）"><a href="#如果要修改第5次的（最近的一次）" class="headerlink" title="如果要修改第5次的（最近的一次）"></a>如果要修改第5次的（最近的一次）</h3><p>分2种情况：</p>
+<p>1，本地刚刚进行了 commit，还没有做其他修改，可执行</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<p>会出现编辑页面，修改message 保存即可。</p>
+<p>2，上次commit之后，继续开发，查看 log 时发现上次的 commit message 写的不好，要进行修改。</p>
+<p>分2种方式：</p>
+<p>第1种就是使用 stash</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git add . &#x2F;&#x2F; 提交本地修改到暂存区</span><br><span class="line">git stash</span><br><span class="line"></span><br><span class="line">git commit --amend</span><br><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
+
+<p>第2种就是先将本地的提交（add,commit之后），使用下面介绍的方法做改变。</p>
+<h3 id="修改第5次之前提交的-commit-message。"><a href="#修改第5次之前提交的-commit-message。" class="headerlink" title="修改第5次之前提交的 commit message。"></a>修改第5次之前提交的 commit message。</h3><p>以第4次提交为例：</p>
+<p>1，需要先确定其祖先commit，可以看到 1-3都是它的祖先，所以这里可以用的 commit hash为 <code>11111 - 33333</code> 都可以的。</p>
+<p>2，开始变基</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rebase -i  11111</span><br></pre></td></tr></table></figure>
+<p>3，在进入的编辑页面中，将要修改的 commit message 前的 <code>pick</code> 改成 <code>r</code>，</p>
+<p>4，保存退出后，会进入另一个编辑页面，就可以修改 commit message 了。</p>
+<p>5，保存退出后即可完成修改。</p>
+<h2 id="2，合并多个-commit"><a href="#2，合并多个-commit" class="headerlink" title="2，合并多个 commit"></a>2，合并多个 commit</h2><p>比如 log 是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">第5次   55555 （commit hash）</span><br><span class="line">第4次   44444</span><br><span class="line">第3次   33333</span><br><span class="line">第2次   22222</span><br><span class="line">第1次   11111</span><br></pre></td></tr></table></figure>
+<p>比如要将3-5次的 commit 进行合并。</p>
+<p>1，和上面的操作类似，先确定其祖先commit，可以看到1和2都是它的祖先，用哪个都可以。</p>
+<p>2，开始变基</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rebase -i  11111</span><br></pre></td></tr></table></figure>
+<p>3，在进入的编辑页面中，将要合并的 commit message 前的 <code>pick</code> 改成 <code>s</code>，</p>
+<p><strong>注意</strong>，因为第3-5次进行合并，（<strong>规定</strong>）最上面的（第5次）的 pick 不能动，只修改第3和第4次的 pick –&gt; s 即可。这样，最终第3-5次的会合并为一个新的 commit hash。</p>
+<p>4，保存退出后，会进入另一个编辑页面，就可以修改 commit message 了。</p>
+<p>5，保存退出后即可完成修改。</p>
+<p><strong>特殊情况</strong></p>
+<p>在上面的 rebase 操作中，会发现一个情况，比如<code>git rebase -i  11111</code> 时，11111 不会出现在编辑页面中。</p>
+<p>也就是说，每次我们指定的祖先 commit hash 并不会出现，这也引出了下面的问题：</p>
+<p><strong>如果要修改的是第1次–第5次，那怎么指定祖先？</strong></p>
+<p>解决1：<strong>手动添加</strong></p>
+<p>1，我们先查看log，复制11111（第1次的hash），进入变基页面后，手动添加这个祖先到<strong>最上面</strong>，在将其他的 pick 全部改成 s。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pick 11111 x</span><br></pre></td></tr></table></figure>
+
+<p>2，剩下的步骤和上面正常情况一样。</p>
+<p>解决2：<strong>使用–root</strong>，会发现祖先 commit hash 也在其中。其他步骤一样。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">git rebase -i --root</span><br></pre></td></tr></table></figure>
+]]></content>
       <categories>
-        <category>hexo建站</category>
+        <category>git</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>bind和call/apply的实现</title>
+    <url>/2020/05/11/bind%E5%92%8Ccall-apply%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
+    <content><![CDATA[<p>实现原理</p>
+<a id="more"></a>
+
+<p>本文是对 <a href="https://www.jianshu.com/p/6958f99db769" target="_blank" rel="noopener">从一道面试题，到“我可能看了假源码”</a> 这篇文章自己的理解和验证。</p>
+<h1 id="bind-实现"><a href="#bind-实现" class="headerlink" title="bind 实现"></a>bind 实现</h1><h2 id="bind-基础实现"><a href="#bind-基础实现" class="headerlink" title="bind 基础实现"></a>bind 基础实现</h2><p>不用做嗅探 <code>Function.prototype.bind = Function.prototype.bind || function(context) {}</code> ，因为现代浏览器都支持了。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bindFun = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> me = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> argsArr = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> me.apply(context, argsArr.slice(<span class="number">1</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用 <code>apply</code> 就可简单实现，不做赘述。</p>
+<h2 id="bind进阶实现1"><a href="#bind进阶实现1" class="headerlink" title="bind进阶实现1"></a>bind进阶实现1</h2><p>基础实现的问题之一，<strong>存在预置参数功能丢失</strong>，我们来验证一下：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAge</span>(<span class="params">a = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.age + a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">  getAge: getAge</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> unbindFun = obj.getAge</span><br><span class="line"><span class="built_in">console</span>.log(unbindFun())</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bindFun = unbindFun.bindFun(obj, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(bindFun(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
+
+<p>由下图可以看到，<code>bindFun(5)</code> 传递的参数丢失了：</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200511173016.png" width="450" />
+
+<p>对比正常情况：</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200511173339.png" width="450" />
+
+<p>更好的实现:</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bindFun = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> me = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> innerArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="keyword">const</span> finalArgs = args.concat(innerArgs)</span><br><span class="line">    <span class="keyword">return</span> me.apply(context, finalArgs)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="bind-进阶实现2"><a href="#bind-进阶实现2" class="headerlink" title="bind 进阶实现2"></a>bind 进阶实现2</h2><p>基础实现的第2个问题：</p>
+<p>如果 bind 返回的函数，作为构造函数进行 new 调用，绑定的 this 应该被忽略。之前的 <a href="https://www.crane0.com/2020/04/20/this%E6%8C%87%E5%90%91/#more" target="_blank" rel="noopener">this指向</a> 文章有详细说明。</p>
+<p>实现的方式，通过原型继承的思想 <code>Child.prototype = new Parent()</code>，对这种情况做了兼容处理。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bindFun = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> me = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> argsArr = <span class="built_in">Array</span>.prototype.slice(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">const</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  F.prototype = <span class="keyword">this</span>.prototype</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> bound = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> innerArgs = <span class="built_in">Array</span>.prototype.slice(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="keyword">const</span> finalArgs = argsArr.concat(innerArgs)</span><br><span class="line">    <span class="keyword">return</span> me.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> F ? <span class="keyword">this</span> : context || <span class="keyword">this</span>, finalArgs)</span><br><span class="line">  &#125;</span><br><span class="line">  bound.prototype = <span class="keyword">new</span> F()</span><br><span class="line">  <span class="keyword">return</span> bound</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="apply-实现"><a href="#apply-实现" class="headerlink" title="apply 实现"></a>apply 实现</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.applyFun = <span class="function"><span class="keyword">function</span>(<span class="params">targetObject, argsArr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> targetObject === <span class="string">'undefined'</span> || targetObject === <span class="literal">null</span>) &#123;</span><br><span class="line">    targetObject = <span class="built_in">window</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> argsArr === <span class="string">'undefined'</span> || argsArr === <span class="literal">null</span>) &#123;</span><br><span class="line">    argsArr = []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  targetObject = <span class="keyword">new</span> <span class="built_in">Object</span>(targetObject)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 为了不和 targetObject 中原有的属性重合，否则会把原有的属性重写。</span></span><br><span class="line">  <span class="comment">// 所以随便指定一个合理的属性名即可，只要保证不和原有的属性重合即可。</span></span><br><span class="line">  <span class="keyword">const</span> tempKey = <span class="built_in">Symbol</span>()</span><br><span class="line">  targetObject[tempKey] = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> ret = targetObject[tempKey](...argsArr)</span><br><span class="line">  <span class="keyword">delete</span> targetObject[tempKey]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实现的原理，利用的 <a href="https://www.crane0.com/2020/04/20/this%E6%8C%87%E5%90%91/#more" target="_blank" rel="noopener">this的隐式丢失</a></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAge</span>(<span class="params">a = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.age + a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">  getAge: getAge</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = obj.getAge</span><br><span class="line">foo() <span class="comment">// this 已经指向 window</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>JavaScript 核心</category>
+      </categories>
+      <tags>
+        <tag>bind</tag>
+        <tag>call</tag>
+        <tag>apply</tag>
+        <tag>继承</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>scrollIntoView的问题</title>
+    <url>/2020/05/20/scrollIntoView%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>记录 <code>scrollIntoView</code> 在微信浏览器环境下，与谷歌浏览器不一致的行为。</p>
+<a id="more"></a>
+
+<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>之前（在 <code>scrollIntoView</code> 兼容性较差时），在页面中要实现点击某个位置，滚动到页面的其他位置可以这样做：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"anchor"</span>&gt;</span>这是要跳转的锚点<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#anchor"</span>&gt;</span>点击跳转<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>另外，如果要回到页面顶部</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>回到顶部<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="scrollIntoView"><a href="#scrollIntoView" class="headerlink" title="scrollIntoView"></a>scrollIntoView</h1><p>上面的方式，在滚动时没有任何过渡效果。</p>
+<p>添加如下 css ，就可以实现平滑滚动：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123; <span class="attribute">scroll-behavior</span>:smooth; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这种 css 的方式，也有对应的 js 形式，</p>
+<p>调用下面的方法，就会从页面的任意位置<strong>平滑</strong>滚动到 id = <code>#anchor</code> 的元素位置处。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toAnchor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> anchor = <span class="built_in">document</span>.querySelector(<span class="string">'#anchor'</span>)</span><br><span class="line">  anchor.scrollIntoView(&#123; <span class="attr">behavior</span>: <span class="string">'smooth'</span>, <span class="attr">block</span>: <span class="string">'start'</span> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li><p>参数 <code>block: &#39;start&#39;</code> 其实是默认值（<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView" target="_blank" rel="noopener">参考MDN</a>）， 但如果不写，在微信浏览器中，滚动的距离会变长，不会符合预期。</p>
+</li>
+<li><p>无论是 css 的形式，还是 js 的形式，Safari 浏览器都不支持。</p>
+</li>
+</ol>
+<blockquote>
+<p>可以滚动到指定的位置，但没有平滑的效果。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>工作遇到的小问题</category>
+      </categories>
+      <tags>
+        <tag>微信</tag>
+        <tag>scrollIntoView</tag>
       </tags>
   </entry>
   <entry>
@@ -96,6 +262,316 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo_next建站_站点概览模块</title>
+    <url>/2020/04/14/hexo_next%E5%BB%BA%E7%AB%99_%E7%AB%99%E7%82%B9%E6%A6%82%E8%A7%88%E6%A8%A1%E5%9D%97/</url>
+    <content><![CDATA[<p>hexo_next建站，站点概览模块</p>
+<a id="more"></a>
+
+<h1 id="站点概览"><a href="#站点概览" class="headerlink" title="站点概览"></a>站点概览</h1><h2 id="头像"><a href="#头像" class="headerlink" title="头像"></a>头像</h2><p>在主题配置中，搜索 <code>avatar</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">avatar:</span><br><span class="line">  url: &#x2F;images&#x2F;avatar.jpg</span><br><span class="line">  rounded: true</span><br><span class="line">  rotated: false</span><br></pre></td></tr></table></figure>
+
+<h2 id="头像下的个人介绍"><a href="#头像下的个人介绍" class="headerlink" title="头像下的个人介绍"></a>头像下的个人介绍</h2><p>在blog 根目录的配置文件 <code>_config.yml</code> 中，设置 <code>description</code> 即可。</p>
+<h2 id="其他个人链接"><a href="#其他个人链接" class="headerlink" title="其他个人链接"></a>其他个人链接</h2><p>在主题配置中，搜索 <code>social</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">social:</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;crane0 || fab fa-github</span><br><span class="line">  E-Mail: mailto:bhad5683126@gmail.com || fa fa-envelope</span><br><span class="line">  WeiXin: &#x2F;wechat || fa fa-weixin</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="个人微信二维码"><a href="#个人微信二维码" class="headerlink" title="个人微信二维码"></a>个人微信二维码</h2><p>因为需要展示一个图片，而原有的配置都是链接，</p>
+<p>所以换个思路，新建一个路由，该页面只放一个图片即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">hexo new page wechat</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>source</code> 目录下会新建一个文件夹，放入二维码图片，</p>
+<p>修改 <code>wechat/index.md</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: 扫描下面二维码添加微信</span><br><span class="line">---</span><br><span class="line">&lt;img src&#x3D;&quot;.&#x2F;wechat-pr.jpg&quot; style&#x3D;&quot;text-align:center; margin: auto; width: 150px&quot;&#x2F;&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>hexo建站</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/04/14/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>hello</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>markdown特殊语法</title>
+    <url>/2020/04/14/markdown%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/</url>
+    <content><![CDATA[<p>不同的编译引擎，会有一些特殊的语法</p>
+<a id="more"></a>
+
+<p>参考 <a href="https://tding.top/archives/29bfe8c9.html" target="_blank" rel="noopener">https://tding.top/archives/29bfe8c9.html</a></p>
+<h1 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
+<blockquote class="blockquote-center">
+            <i class="fa fa-quote-left"></i>
+            <p>世间所有的相遇，都是久别重逢</p>
+
+            <i class="fa fa-quote-right"></i>
+          </blockquote>
+
+<h1 id="提示块-Note"><a href="#提示块-Note" class="headerlink" title="提示块 - Note"></a>提示块 - Note</h1><p>在主题配置文件中，可以修改风格</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span> <span class="comment"># 是否显示图标</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note default">
+            <p>default 提示块标签</p>
+          </div>
+
+<div class="note primary">
+            <p>primary 提示块标签</p>
+          </div>
+
+<div class="note success">
+            <p>success 提示块标签</p>
+          </div>
+
+<div class="note info">
+            <p>info 提示块标签</p>
+          </div>
+
+<div class="note warning">
+            <p>warning 提示块标签</p>
+          </div>
+
+<div class="note danger">
+            <p>danger 提示块标签</p>
+          </div>
+
+<h1 id="标签-Label"><a href="#标签-Label" class="headerlink" title="标签 - Label"></a>标签 - Label</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% label default@默认 %&#125; &#123;% label primary@主要 %&#125; &#123;% label success@成功 %&#125; &#123;% label info@信息 %&#125; &#123;% label warning@警告 %&#125; &#123;% label danger@危险 %&#125;</span><br></pre></td></tr></table></figure>
+
+<span class="label default">默认</span> <span class="label primary">主要</span> <span class="label success">成功</span> <span class="label info">信息</span> <span class="label warning">警告</span> <span class="label danger">危险</span> 
+
+<h1 id="选项卡-Tabs"><a href="#选项卡-Tabs" class="headerlink" title="选项卡 - Tabs"></a>选项卡 - Tabs</h1><p>在主题配置文件中，可以修改风格</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% tabs tab,1 %&#125; 名字为tab，默认在第1个选项卡，如果是-1则隐藏</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 1 </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab A --&gt;</span><br><span class="line">选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">tab 1</a></li><li class="tab"><a href="#tab-2">tab 2</a></li><li class="tab"><a href="#tab-3">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>选项卡 1 </p></div><div class="tab-pane" id="tab-2"><p>选项卡 2</p></div><div class="tab-pane" id="tab-3"><p>选项卡 3</p></div></div></div>
+
+<h1 id="按钮-Button"><a href="#按钮-Button" class="headerlink" title="按钮 - Button"></a>按钮 - Button</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% button url, text, icon [class], [title] %&#125;</span><br></pre></td></tr></table></figure>
+<div class="text-center">
+  <div>
+    <a class="btn" href="https://crane0.github.io/ " title="这是博客首页">
+            <i class="fa fa-home fa-fw"></i>首页
+          </a> 
+    <a class="btn" href="https://crane0.github.io/archives/ " title="这是归档">
+            <i class="fa fa-archive fa-archive"></i>归档
+          </a> 
+    <a class="btn" href="https://crane0.github.io/tags/ " title="这是标签">
+            <i class="fa fa-tags fa-tags"></i>标签
+          </a>
+  </div>
+</div>
+]]></content>
+      <tags>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>this指向</title>
+    <url>/2020/04/20/this%E6%8C%87%E5%90%91/</url>
+    <content><![CDATA[<p>this 的指向，是在调用函数时，根据执行上下文动态确定的。</p>
+<p>包括</p>
+<ul>
+<li>独立调用</li>
+<li>隐式调用</li>
+<li>显示绑定</li>
+<li>new 调用</li>
+<li>this 的优先级</li>
+</ul>
+<a id="more"></a>
+
+<h1 id="独立调用"><a href="#独立调用" class="headerlink" title="独立调用"></a>独立调用</h1><p>函数在浏览器全局环境中被直接调用:</p>
+<ul>
+<li>非严格模式下 this 指向 window</li>
+<li>在 use strict 指明严格模式的下是 undefined</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line">f1() <span class="comment">// window</span></span><br><span class="line">f2() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>定时器中的函数调用，指向 window</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// window</span></span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h1 id="隐式调用"><a href="#隐式调用" class="headerlink" title="隐式调用"></a>隐式调用</h1><p>发生在上下文对象调用时，this 指向最后调用它的对象。</p>
+<p>也就是说，在执行函数时，如果函数中的 this 是被上一级的对象所调用，那么 this 指向的就是上一级的对象；否则指向全局环境。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name: <span class="string">'crane0'</span>,</span><br><span class="line">    brother: &#123;</span><br><span class="line">        name: <span class="string">'lufei'</span>,</span><br><span class="line">        fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(person.brother.fn()) <span class="comment">// `lufei`</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> o1 = &#123;</span><br><span class="line">    text: <span class="string">'o1'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.text</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> o2 = &#123;</span><br><span class="line">    text: <span class="string">'o2'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.fn()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> o3 = &#123;</span><br><span class="line">    text: <span class="string">'o3'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> fn = o1.fn</span><br><span class="line">        <span class="keyword">return</span> fn()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(o1.fn())  <span class="comment">// o1</span></span><br><span class="line"><span class="built_in">console</span>.log(o2.fn())  <span class="comment">// o1</span></span><br><span class="line"><span class="built_in">console</span>.log(o3.fn())</span><br></pre></td></tr></table></figure>
+
+<p>最后一个会输出 <code>undefined</code>，因为最后在执行时，已经变为独立调用了。此时 <code>this</code> 指向 <code>window</code></p>
+<p>问题来了，如何让 <code>console.log(o2.fn())</code> 输出 <code>o2</code> 呢？</p>
+<blockquote>
+<p>除了用 <code>bind/call/apply</code> 来对 this 的指向进行干预外，有没有其他的办法。</p>
+</blockquote>
+<p>进行如下改造即可，this 指向最后调用它的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> o2 = &#123;</span><br><span class="line">    text: <span class="string">'o2'</span>,</span><br><span class="line">    fn: o1.fn()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="隐式丢失"><a href="#隐式丢失" class="headerlink" title="隐式丢失"></a>隐式丢失</h2><p>指隐式绑定的函数丢失绑定对象，从而默认绑定到全局或者undefined（取决于是否使用严格模式）。</p>
+<p><strong>隐式丢失实质上最后变成了独立调用</strong></p>
+<blockquote>
+<p>下面3种输出都为 undefined</p>
+</blockquote>
+<p>1，为函数调用创建别名</p>
+<blockquote>
+<p>虽然 fn 函数在 foo 对象中作为方法被引用，但在赋值给 f1 后，是在 window 全局环境中执行的。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">   a: <span class="number">66</span>,</span><br><span class="line">   foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo</span><br><span class="line">bar() <span class="comment">// 独立调用</span></span><br></pre></td></tr></table></figure>
+
+<p>2，作为参数传递时</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">   fn(); <span class="comment">// 独立调用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">   a: <span class="number">66</span>,</span><br><span class="line">   foo: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doFoo(obj.foo)</span><br></pre></td></tr></table></figure>
+
+<p>3，传给定时器函数</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">   a: <span class="number">66</span>,</span><br><span class="line">   foo: foo</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(obj.foo) <span class="comment">// 独立调用</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h1><p>通过 <code>bind/call/apply</code> 改变 this 指向。</p>
+<p>三者异同点直接用代码表示：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> targetObj = &#123;&#125;</span><br><span class="line">fn.call(targetObj, <span class="string">'arg1'</span>, <span class="string">'arg2'</span>)</span><br></pre></td></tr></table></figure>
+<p>等于</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> targetObj = &#123;&#125;</span><br><span class="line">fn.apply(targetObj, [<span class="string">'arg1'</span>, <span class="string">'arg2'</span>])</span><br></pre></td></tr></table></figure>
+<p>等于</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> targetObj = &#123;&#125;</span><br><span class="line">fn.bind(targetObj, <span class="string">'arg1'</span>, <span class="string">'arg2'</span>)()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意，如果第一个参数为 <code>null</code> 或 <code>undefined</code>，那就绑定给了 window</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;</span><br><span class="line">    name: <span class="string">'crane0'</span>,</span><br><span class="line">    logName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = &#123;</span><br><span class="line">    name: <span class="string">'lufei'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo.logName.call(bar)) <span class="comment">// lufei</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="new-调用"><a href="#new-调用" class="headerlink" title="new 调用"></a>new 调用</h1><p>一般情况下，this 绑定给构造出的实例对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.bar = <span class="string">"crane0"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Foo()</span><br><span class="line"><span class="built_in">console</span>.log(instance.bar)  <span class="comment">// crane0</span></span><br></pre></td></tr></table></figure>
+
+<p>这牵扯到2个问题</p>
+<ul>
+<li><p><a href="https://javascript.ruanyifeng.com/oop/basic.html#toc2" target="_blank" rel="noopener">new 做了什么</a></p>
+</li>
+<li><p>构造函数和普通函数的区别</p>
+</li>
+</ul>
+<h2 id="new-做了什么"><a href="#new-做了什么" class="headerlink" title="new 做了什么"></a>new 做了什么</h2><ul>
+<li>创建一个空对象，作为将要返回的对象实例。</li>
+<li>将这个空对象的原型，指向构造函数的prototype属性。</li>
+<li>将这个空对象赋值给函数内部的this关键字。</li>
+<li>开始执行构造函数内部的代码。</li>
+</ul>
+<p>简单实现</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">obj.__proto__ = Foo.prototype</span><br><span class="line">Foo.call(obj)</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造函数和普通函数的区别"><a href="#构造函数和普通函数的区别" class="headerlink" title="构造函数和普通函数的区别"></a>构造函数和普通函数的区别</h2><p>简单来说，普通函数指：内部没有this关键字的函数。</p>
+<h2 id="new-调用返回值分析"><a href="#new-调用返回值分析" class="headerlink" title="new 调用返回值分析"></a>new 调用返回值分析</h2><p>当构造函数中出现了显式 return 的情况，有2种场景</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.user = <span class="string">"crane0"</span></span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Foo()</span><br><span class="line"><span class="built_in">console</span>.log(instance.user) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
+<p>1，此时 instance 是返回的空对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.user = <span class="string">"crane0"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Foo()</span><br><span class="line"><span class="built_in">console</span>.log(instance.user) <span class="comment">// crane0</span></span><br></pre></td></tr></table></figure>
+<p>2，此时 instance 是返回的目标对象实例 this。</p>
+<div class="note success">
+            <p>结论：如果构造函数中显式返回一个值，且是一个对象，那么 this 就指向这个返回的对象；如果返回的不是一个对象，那么 this 仍然指向实例。</p>
+          </div>
+
+<p>3，对普通函数使用new命令，则会返回一个空对象。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMessage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'this is a message'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msg = <span class="keyword">new</span> getMessage()</span><br><span class="line"><span class="built_in">console</span>.log(msg) <span class="comment">//空对象</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="箭头函数的-this"><a href="#箭头函数的-this" class="headerlink" title="箭头函数的 this"></a>箭头函数的 this</h2><ul>
+<li>箭头函数使用 this 是根据外层（函数或者全局）上下文来决定。</li>
+<li><strong>箭头函数的绑定无法被修改！</strong></li>
+</ul>
+<p>1，简单的例子</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;  </span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="built_in">console</span>.log(foo.fn()) <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
+
+<p>如果是箭头函数，</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;  </span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(foo.fn()) <span class="comment">// &#123;fn: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
+<p>2，无法被修改的例子</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bar = foo.call(obj1)</span><br><span class="line"><span class="built_in">console</span>.log(bar.call(obj2)) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p>foo() 的 this 已经绑定给 obj1，所以 bar（箭头函数）的 this 绑定给 obj1 了。</p>
+<p>此时想将 bar() 的this 绑定给 obj2，发现失败了。</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = foo.call(obj1)</span><br><span class="line"><span class="built_in">console</span>.log(bar.call(obj2))  <span class="comment">// 123</span></span><br></pre></td></tr></table></figure>
+
+<p>既然都是箭头函数，并且是在全局环境中，所以绑定已经没有效果了，this 指向 window。</p>
+<p>注意，如果将 <code>var a = 123</code> 改为 <code>const a = 123</code>，输出为 undefined，</p>
+<p>因为使用 const 声明的变量不会挂载到 window 全局对象当中。</p>
+<h1 id="this-的优先级"><a href="#this-的优先级" class="headerlink" title="this 的优先级"></a>this 的优先级</h1><ul>
+<li>new 调用</li>
+<li>显示绑定： call、apply、bind 对 this 的绑定</li>
+<li>隐式调用</li>
+</ul>
+<p>结论：new &gt; 显示 &gt; 隐式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj1.foo.call(obj2)  <span class="comment">// 2</span></span><br><span class="line">obj2.foo.call(obj1)  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+
+<p>说明显示 &gt; 隐式</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = foo.bind(obj1)</span><br><span class="line">bar(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(obj1.a)  <span class="comment">// &#123;a: 2&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> bar(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(baz.a)  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>bar 函数内部已经对将 this 绑定为 obj1，而当它作为构造函数，通过 new 调用时，返回的实例已经与 obj1 解绑。</p>
+<p>说明 new &gt; 显示。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>this 很基础却很重要，本文系统的总结了 this 的各种情况，明白 this 的指向在工作中是很有必要，不会去犯一些低级错误。</p>
+]]></content>
+      <categories>
+        <category>JavaScript 核心</category>
+      </categories>
+      <tags>
+        <tag>this</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>test_my_site</title>
+    <url>/2020/04/11/test-my-site/</url>
+    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// n 可以省略</span><br><span class="line">git <span class="built_in">log</span> -nx</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; n 可以省略</span><br><span class="line">git log -nx</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>web前端</category>
+      </categories>
+      <tags>
+        <tag>表格</tag>
+        <tag>表单验证</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>base64编解码</title>
+    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
+    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
+<a id="more"></a>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工具方法</category>
+      </categories>
+      <tags>
+        <tag>工具方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>leetcode</title>
+    <url>/2020/04/17/leetcode/</url>
+    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">    arr[j] = arr[i]</span><br><span class="line">    <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">      arr[i] = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    j++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>algorithm</tag>
       </tags>
   </entry>
   <entry>
@@ -262,265 +738,6 @@
       </tags>
   </entry>
   <entry>
-    <title>markdown特殊语法</title>
-    <url>/2020/04/14/markdown%E7%89%B9%E6%AE%8A%E8%AF%AD%E6%B3%95/</url>
-    <content><![CDATA[<p>不同的编译引擎，会有一些特殊的语法</p>
-<a id="more"></a>
-
-<p>参考 <a href="https://tding.top/archives/29bfe8c9.html" target="_blank" rel="noopener">https://tding.top/archives/29bfe8c9.html</a></p>
-<h1 id="文本居中引用-Centered-Quote"><a href="#文本居中引用-Centered-Quote" class="headerlink" title="文本居中引用 - Centered Quote"></a>文本居中引用 - Centered Quote</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% cq %&#125;世间所有的相遇，都是久别重逢&#123;% endcq %&#125;</span><br></pre></td></tr></table></figure>
-<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>世间所有的相遇，都是久别重逢</p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-
-<h1 id="提示块-Note"><a href="#提示块-Note" class="headerlink" title="提示块 - Note"></a>提示块 - Note</h1><p>在主题配置文件中，可以修改风格</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Note tag (bs-callout)</span></span><br><span class="line"><span class="attr">note:</span></span><br><span class="line">  <span class="comment"># Note tag style values:</span></span><br><span class="line">  <span class="comment">#  - simple    bs-callout old alert style. Default.</span></span><br><span class="line">  <span class="comment">#  - modern    bs-callout new (v2-v3) alert style.</span></span><br><span class="line">  <span class="comment">#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span></span><br><span class="line">  <span class="comment">#  - disabled  disable all CSS styles import of note tag.</span></span><br><span class="line">  <span class="attr">style:</span> <span class="string">flat</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span> <span class="comment"># 是否显示图标</span></span><br><span class="line">  <span class="comment"># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span></span><br><span class="line">  <span class="comment"># Offset also applied to label tag variables. This option can work with disabled note tag.</span></span><br><span class="line">  <span class="attr">light_bg_offset:</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% note default %&#125;</span><br><span class="line">default 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note primary %&#125;</span><br><span class="line">primary 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note success %&#125;</span><br><span class="line">success 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note info %&#125;</span><br><span class="line">info 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note warning %&#125;</span><br><span class="line">warning 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br><span class="line"></span><br><span class="line">&#123;% note danger %&#125;</span><br><span class="line">danger 提示块标签</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-
-<div class="note default">
-            <p>default 提示块标签</p>
-          </div>
-
-<div class="note primary">
-            <p>primary 提示块标签</p>
-          </div>
-
-<div class="note success">
-            <p>success 提示块标签</p>
-          </div>
-
-<div class="note info">
-            <p>info 提示块标签</p>
-          </div>
-
-<div class="note warning">
-            <p>warning 提示块标签</p>
-          </div>
-
-<div class="note danger">
-            <p>danger 提示块标签</p>
-          </div>
-
-<h1 id="标签-Label"><a href="#标签-Label" class="headerlink" title="标签 - Label"></a>标签 - Label</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% label default@默认 %&#125; &#123;% label primary@主要 %&#125; &#123;% label success@成功 %&#125; &#123;% label info@信息 %&#125; &#123;% label warning@警告 %&#125; &#123;% label danger@危险 %&#125;</span><br></pre></td></tr></table></figure>
-
-<span class="label default">默认</span> <span class="label primary">主要</span> <span class="label success">成功</span> <span class="label info">信息</span> <span class="label warning">警告</span> <span class="label danger">危险</span> 
-
-<h1 id="选项卡-Tabs"><a href="#选项卡-Tabs" class="headerlink" title="选项卡 - Tabs"></a>选项卡 - Tabs</h1><p>在主题配置文件中，可以修改风格</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Tabs tag</span></span><br><span class="line"><span class="attr">tabs:</span></span><br><span class="line">  <span class="attr">transition:</span></span><br><span class="line">    <span class="attr">tabs:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">labels:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% tabs tab,1 %&#125; 名字为tab，默认在第1个选项卡，如果是-1则隐藏</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 1 </span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab --&gt;</span><br><span class="line">选项卡 2</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&lt;!-- tab A --&gt;</span><br><span class="line">选项卡 3</span><br><span class="line">&lt;!-- endtab --&gt;</span><br><span class="line">&#123;% endtabs %&#125;</span><br></pre></td></tr></table></figure>
-
-<div class="tabs" id="tab"><ul class="nav-tabs"><li class="tab active"><a href="#tab-1">tab 1</a></li><li class="tab"><a href="#tab-2">tab 2</a></li><li class="tab"><a href="#tab-3">A</a></li></ul><div class="tab-content"><div class="tab-pane active" id="tab-1"><p>选项卡 1 </p></div><div class="tab-pane" id="tab-2"><p>选项卡 2</p></div><div class="tab-pane" id="tab-3"><p>选项卡 3</p></div></div></div>
-
-<h1 id="按钮-Button"><a href="#按钮-Button" class="headerlink" title="按钮 - Button"></a>按钮 - Button</h1><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#123;% button url, text, icon [class], [title] %&#125;</span><br></pre></td></tr></table></figure>
-<div class="text-center">
-  <div>
-    <a class="btn" href="https://crane0.github.io/ " title="这是博客首页">
-            <i class="fa fa-home fa-fw"></i>首页
-          </a> 
-    <a class="btn" href="https://crane0.github.io/archives/ " title="这是归档">
-            <i class="fa fa-archive fa-archive"></i>归档
-          </a> 
-    <a class="btn" href="https://crane0.github.io/tags/ " title="这是标签">
-            <i class="fa fa-tags fa-tags"></i>标签
-          </a>
-  </div>
-</div>
-]]></content>
-      <tags>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test_my_site</title>
-    <url>/2020/04/11/test-my-site/</url>
-    <content><![CDATA[<h1 id="这是-test-my-site-文章"><a href="#这是-test-my-site-文章" class="headerlink" title="这是 test-my-site 文章"></a>这是 test-my-site 文章</h1><p>做了一次更新<br>做了第2次更新</p>
-<a id="more"></a>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'this is'</span> <span class="number">123</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const a &#x3D; 1</span><br><span class="line"></span><br><span class="line">function() &#123;</span><br><span class="line">  console.log(&#39;this is&#39; 123)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// n 可以省略</span><br><span class="line">git <span class="built_in">log</span> -nx</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F; n 可以省略</span><br><span class="line">git log -nx</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>web前端</category>
-      </categories>
-      <tags>
-        <tag>表格</tag>
-        <tag>表单验证</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>this指向</title>
-    <url>/2020/04/20/this%E6%8C%87%E5%90%91/</url>
-    <content><![CDATA[<p>this 的指向，是在调用函数时，根据执行上下文动态确定的。</p>
-<p>包括</p>
-<ul>
-<li>独立调用</li>
-<li>隐式调用</li>
-<li>显示绑定</li>
-<li>new 调用</li>
-<li>this 的优先级</li>
-</ul>
-<a id="more"></a>
-
-<h1 id="独立调用"><a href="#独立调用" class="headerlink" title="独立调用"></a>独立调用</h1><p>函数在浏览器全局环境中被直接调用:</p>
-<ul>
-<li>非严格模式下 this 指向 window</li>
-<li>在 use strict 指明严格模式的下是 undefined</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f2</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">&#125;</span><br><span class="line">f1() <span class="comment">// window</span></span><br><span class="line">f2() <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<p>定时器中的函数调用，指向 window</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// window</span></span><br><span class="line">&#125;)</span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">    'use strict'</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>) <span class="comment">// window</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<h1 id="隐式调用"><a href="#隐式调用" class="headerlink" title="隐式调用"></a>隐式调用</h1><p>发生在上下文对象调用时，this 指向最后调用它的对象。</p>
-<p>也就是说，在执行函数时，如果函数中的 this 是被上一级的对象所调用，那么 this 指向的就是上一级的对象；否则指向全局环境。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> person = &#123;</span><br><span class="line">    name: <span class="string">'crane0'</span>,</span><br><span class="line">    brother: &#123;</span><br><span class="line">        name: <span class="string">'lufei'</span>,</span><br><span class="line">        fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">this</span>.name</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(person.brother.fn()) <span class="comment">// `lufei`</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> o1 = &#123;</span><br><span class="line">    text: <span class="string">'o1'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.text</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> o2 = &#123;</span><br><span class="line">    text: <span class="string">'o2'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> o1.fn()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> o3 = &#123;</span><br><span class="line">    text: <span class="string">'o3'</span>,</span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> fn = o1.fn</span><br><span class="line">        <span class="keyword">return</span> fn()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(o1.fn())  <span class="comment">// o1</span></span><br><span class="line"><span class="built_in">console</span>.log(o2.fn())  <span class="comment">// o1</span></span><br><span class="line"><span class="built_in">console</span>.log(o3.fn())</span><br></pre></td></tr></table></figure>
-
-<p>最后一个会输出 <code>undefined</code>，因为最后在执行时，已经变为独立调用了。此时 <code>this</code> 指向 <code>window</code></p>
-<p>问题来了，如何让 <code>console.log(o2.fn())</code> 输出 <code>o2</code> 呢？</p>
-<blockquote>
-<p>除了用 <code>bind/call/apply</code> 来对 this 的指向进行干预外，有没有其他的办法。</p>
-</blockquote>
-<p>进行如下改造即可，this 指向最后调用它的对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> o2 = &#123;</span><br><span class="line">    text: <span class="string">'o2'</span>,</span><br><span class="line">    fn: o1.fn()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="隐式丢失"><a href="#隐式丢失" class="headerlink" title="隐式丢失"></a>隐式丢失</h2><p>指隐式绑定的函数丢失绑定对象，从而默认绑定到全局或者undefined（取决于是否使用严格模式）。</p>
-<p><strong>隐式丢失实质上最后变成了独立调用</strong></p>
-<blockquote>
-<p>下面3种输出都为 undefined</p>
-</blockquote>
-<p>1，为函数调用创建别名</p>
-<blockquote>
-<p>虽然 fn 函数在 foo 对象中作为方法被引用，但在赋值给 f1 后，是在 window 全局环境中执行的。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">   a: <span class="number">66</span>,</span><br><span class="line">   foo: foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = obj.foo</span><br><span class="line">bar() <span class="comment">// 独立调用</span></span><br></pre></td></tr></table></figure>
-
-<p>2，作为参数传递时</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.a); </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">doFoo</span>(<span class="params">fn</span>) </span>&#123;</span><br><span class="line">   fn(); <span class="comment">// 独立调用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">   a: <span class="number">66</span>,</span><br><span class="line">   foo: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">doFoo(obj.foo)</span><br></pre></td></tr></table></figure>
-
-<p>3，传给定时器函数</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj=&#123;</span><br><span class="line">   a: <span class="number">66</span>,</span><br><span class="line">   foo: foo</span><br><span class="line">&#125;</span><br><span class="line">setTimeout(obj.foo) <span class="comment">// 独立调用</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h1><p>通过 <code>bind/call/apply</code> 改变 this 指向。</p>
-<p>三者异同点直接用代码表示：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> targetObj = &#123;&#125;</span><br><span class="line">fn.call(targetObj, <span class="string">'arg1'</span>, <span class="string">'arg2'</span>)</span><br></pre></td></tr></table></figure>
-<p>等于</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> targetObj = &#123;&#125;</span><br><span class="line">fn.apply(targetObj, [<span class="string">'arg1'</span>, <span class="string">'arg2'</span>])</span><br></pre></td></tr></table></figure>
-<p>等于</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> targetObj = &#123;&#125;</span><br><span class="line">fn.bind(targetObj, <span class="string">'arg1'</span>, <span class="string">'arg2'</span>)()</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意，如果第一个参数为 <code>null</code> 或 <code>undefined</code>，那就绑定给了 window</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;</span><br><span class="line">    name: <span class="string">'crane0'</span>,</span><br><span class="line">    logName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> bar = &#123;</span><br><span class="line">    name: <span class="string">'lufei'</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(foo.logName.call(bar)) <span class="comment">// lufei</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="new-调用"><a href="#new-调用" class="headerlink" title="new 调用"></a>new 调用</h1><p>一般情况下，this 绑定给构造出的实例对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.bar = <span class="string">"crane0"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Foo()</span><br><span class="line"><span class="built_in">console</span>.log(instance.bar)  <span class="comment">// crane0</span></span><br></pre></td></tr></table></figure>
-
-<p>这牵扯到2个问题</p>
-<ul>
-<li><p><a href="https://javascript.ruanyifeng.com/oop/basic.html#toc2" target="_blank" rel="noopener">new 做了什么</a></p>
-</li>
-<li><p>构造函数和普通函数的区别</p>
-</li>
-</ul>
-<h2 id="new-做了什么"><a href="#new-做了什么" class="headerlink" title="new 做了什么"></a>new 做了什么</h2><ul>
-<li>创建一个空对象，作为将要返回的对象实例。</li>
-<li>将这个空对象的原型，指向构造函数的prototype属性。</li>
-<li>将这个空对象赋值给函数内部的this关键字。</li>
-<li>开始执行构造函数内部的代码。</li>
-</ul>
-<p>简单实现</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;&#125;</span><br><span class="line">obj.__proto__ = Foo.prototype</span><br><span class="line">Foo.call(obj)</span><br></pre></td></tr></table></figure>
-
-<h2 id="构造函数和普通函数的区别"><a href="#构造函数和普通函数的区别" class="headerlink" title="构造函数和普通函数的区别"></a>构造函数和普通函数的区别</h2><p>简单来说，普通函数指：内部没有this关键字的函数。</p>
-<h2 id="new-调用返回值分析"><a href="#new-调用返回值分析" class="headerlink" title="new 调用返回值分析"></a>new 调用返回值分析</h2><p>当构造函数中出现了显式 return 的情况，有2种场景</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.user = <span class="string">"crane0"</span></span><br><span class="line">    <span class="keyword">const</span> obj = &#123;&#125;</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Foo()</span><br><span class="line"><span class="built_in">console</span>.log(instance.user) <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
-<p>1，此时 instance 是返回的空对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Foo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.user = <span class="string">"crane0"</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> instance = <span class="keyword">new</span> Foo()</span><br><span class="line"><span class="built_in">console</span>.log(instance.user) <span class="comment">// crane0</span></span><br></pre></td></tr></table></figure>
-<p>2，此时 instance 是返回的目标对象实例 this。</p>
-<div class="note success">
-            <p>结论：如果构造函数中显式返回一个值，且是一个对象，那么 this 就指向这个返回的对象；如果返回的不是一个对象，那么 this 仍然指向实例。</p>
-          </div>
-
-<p>3，对普通函数使用new命令，则会返回一个空对象。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMessage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'this is a message'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> msg = <span class="keyword">new</span> getMessage()</span><br><span class="line"><span class="built_in">console</span>.log(msg) <span class="comment">//空对象</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="箭头函数的-this"><a href="#箭头函数的-this" class="headerlink" title="箭头函数的 this"></a>箭头函数的 this</h2><ul>
-<li>箭头函数使用 this 是根据外层（函数或者全局）上下文来决定。</li>
-<li><strong>箭头函数的绑定无法被修改！</strong></li>
-</ul>
-<p>1，简单的例子</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;  </span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">        setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;  </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="built_in">console</span>.log(foo.fn()) <span class="comment">// window</span></span><br></pre></td></tr></table></figure>
-
-<p>如果是箭头函数，</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> foo = &#123;  </span><br><span class="line">    fn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  </span><br><span class="line">        setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;  </span><br><span class="line">            <span class="built_in">console</span>.log(<span class="keyword">this</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;  </span><br><span class="line">&#125; </span><br><span class="line"><span class="built_in">console</span>.log(foo.fn()) <span class="comment">// &#123;fn: ƒ&#125;</span></span><br></pre></td></tr></table></figure>
-<p>2，无法被修改的例子</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bar = foo.call(obj1)</span><br><span class="line"><span class="built_in">console</span>.log(bar.call(obj2)) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-<p>foo() 的 this 已经绑定给 obj1，所以 bar（箭头函数）的 this 绑定给 obj1 了。</p>
-<p>此时想将 bar() 的this 绑定给 obj2，发现失败了。</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span></span><br><span class="line"><span class="keyword">const</span> foo = <span class="function"><span class="params">()</span> =&gt;</span> <span class="function"><span class="params">a</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">3</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = foo.call(obj1)</span><br><span class="line"><span class="built_in">console</span>.log(bar.call(obj2))  <span class="comment">// 123</span></span><br></pre></td></tr></table></figure>
-
-<p>既然都是箭头函数，并且是在全局环境中，所以绑定已经没有效果了，this 指向 window。</p>
-<p>注意，如果将 <code>var a = 123</code> 改为 <code>const a = 123</code>，输出为 undefined，</p>
-<p>因为使用 const 声明的变量不会挂载到 window 全局对象当中。</p>
-<h1 id="this-的优先级"><a href="#this-的优先级" class="headerlink" title="this 的优先级"></a>this 的优先级</h1><ul>
-<li>new 调用</li>
-<li>显示绑定： call、apply、bind 对 this 的绑定</li>
-<li>隐式调用</li>
-</ul>
-<p>结论：new &gt; 显示 &gt; 隐式</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;</span><br><span class="line">    a: <span class="number">1</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj2 = &#123;</span><br><span class="line">    a: <span class="number">2</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">obj1.foo.call(obj2)  <span class="comment">// 2</span></span><br><span class="line">obj2.foo.call(obj1)  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
-
-<p>说明显示 &gt; 隐式</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = a</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj1 = &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> bar = foo.bind(obj1)</span><br><span class="line">bar(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(obj1.a)  <span class="comment">// &#123;a: 2&#125;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> bar(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(baz.a)  <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
-<p>bar 函数内部已经对将 this 绑定为 obj1，而当它作为构造函数，通过 new 调用时，返回的实例已经与 obj1 解绑。</p>
-<p>说明 new &gt; 显示。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>this 很基础却很重要，本文系统的总结了 this 的各种情况，明白 this 的指向在工作中是很有必要，不会去犯一些低级错误。</p>
-]]></content>
-      <categories>
-        <category>JavaScript 核心</category>
-      </categories>
-      <tags>
-        <tag>this</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>leetcode</title>
-    <url>/2020/04/17/leetcode/</url>
-    <content><![CDATA[<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">0</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">0</span>,<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> j = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">  <span class="keyword">if</span> (arr[i] !== <span class="number">0</span>) &#123;</span><br><span class="line">    arr[j] = arr[i]</span><br><span class="line">    <span class="keyword">if</span> (i !== j) &#123;</span><br><span class="line">      arr[i] = <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">    j++</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>base64编解码</title>
-    <url>/2020/04/21/base64%E7%BC%96%E8%A7%A3%E7%A0%81/</url>
-    <content><![CDATA[<p>window 自带的函数，可以进行 base64 编解码，兼容性非常好。</p>
-<a id="more"></a>
-
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WindowBase64/btoa" target="_blank" rel="noopener">MDN参考</a></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">window</span>.btoa(<span class="string">"Hello, world"</span>) <span class="comment">// "SGVsbG8sIHdvcmxk"</span></span><br><span class="line"><span class="built_in">window</span>.atob(<span class="string">"SGVsbG8sIHdvcmxk"</span>) <span class="comment">// "Hello, world"</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工具方法</category>
-      </categories>
-      <tags>
-        <tag>工具方法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>提升</title>
     <url>/2020/04/23/%E6%8F%90%E5%8D%87/</url>
     <content><![CDATA[<p>涉及变量和函数提升。</p>
@@ -678,6 +895,127 @@
       </tags>
   </entry>
   <entry>
+    <title>资源的渲染</title>
+    <url>/2020/09/07/%E8%B5%84%E6%BA%90%E7%9A%84%E6%B8%B2%E6%9F%93/</url>
+    <content><![CDATA[<p>简单介绍浏览器如何渲染 html, css, js</p>
+<a id="more"></a>
+
+<h1 id="1，构建DOM树"><a href="#1，构建DOM树" class="headerlink" title="1，构建DOM树"></a>1，构建DOM树</h1><p>HTML解析器，会将 HTML 解析为 DOM 树，浏览器才能识别。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115024.png" width="450" />
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span></span><br></pre></td></tr></table></figure>
+
+<p>DOM 树，是保存在内存中树状结构，通过 JavaScript 来查询或修改其内容。</p>
+<h1 id="2，样式计算"><a href="#2，样式计算" class="headerlink" title="2，样式计算"></a>2，样式计算</h1><h2 id="2-1，解析-CSS-文本"><a href="#2-1，解析-CSS-文本" class="headerlink" title="2.1，解析 CSS 文本"></a>2.1，解析 CSS 文本</h2><p>CSS 来源：</p>
+<ul>
+<li>link</li>
+<li>style 标签</li>
+<li>内联样式</li>
+</ul>
+<p>渲染引擎会将 link 和 style 标签的 cssText 解析放入 styleSheets，内联样式放入 CSSStyleDeclaration</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.styleSheets</span><br><span class="line"></span><br><span class="line">element.style</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最终，可以通过 <code>window.getComputedStyle()</code> 获取所有的 CSS属性。</p>
+</blockquote>
+<h2 id="2-2，属性值标准化"><a href="#2-2，属性值标准化" class="headerlink" title="2.2，属性值标准化"></a>2.2，属性值标准化</h2><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115129.png" width="450" />
+
+<p>虽然在浏览器中查看时，还是原来的属性值，但浏览器渲染时用的都是标准化的属性值。</p>
+<h2 id="2-3，计算-DOM-树中每个节点的样式"><a href="#2-3，计算-DOM-树中每个节点的样式" class="headerlink" title="2.3，计算 DOM 树中每个节点的样式"></a>2.3，计算 DOM 树中每个节点的样式</h2><p>这里涉及样式继承，优先级（来源）等问题，不做考虑。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115205.png" width="450" />
+
+<h1 id="3，布局"><a href="#3，布局" class="headerlink" title="3，布局"></a>3，布局</h1><p>计算出 DOM 树中可见元素的几何位置。</p>
+<p>DOM 树中，有的标签是不展示的</p>
+<ul>
+<li>head</li>
+<li>display: none 的元素</li>
+</ul>
+<p>所以，还得有一个 <strong>布局（渲染）树</strong></p>
+<blockquote>
+<p>相对于DOM 树，就是去掉了不展示的标签。</p>
+</blockquote>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115229.png" width="450" />
+
+<h1 id="4，分层"><a href="#4，分层" class="headerlink" title="4，分层"></a>4，分层</h1><p>浏览器的页面实际上会被分成很多个图层，这些图层叠加后合成了最终的页面。（和 PS 中差不多）</p>
+<p>页面中会有很多复杂的效果，3D 变换，甚至页面滚动等。渲染引擎会为这些特定的节点，生成专用的图层，并生成一棵图层树（LayerTree）</p>
+<p><strong>chrome 的 Layer标签</strong> 可以看到图层最终的分层效果。</p>
+<h2 id="4-1，如何分层？"><a href="#4-1，如何分层？" class="headerlink" title="4.1，如何分层？"></a>4.1，如何分层？</h2><ol>
+<li>拥有<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" target="_blank" rel="noopener">层叠上下文</a>属性的元素会被提升为单独的一层。<br>但经测试，只有下面的会被分层</li>
+</ol>
+<ul>
+<li>transform: translateY 和 Z，X不会。</li>
+<li>transform: rotate 相关</li>
+<li>filter: blur(5px);</li>
+<li>will-change: transform;</li>
+</ul>
+<ol start="2">
+<li>滚动条是单独一层。</li>
+<li>需要剪裁（clip）的地方也会被创建为图层。</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.text</span> &#123;</span></span><br><span class="line">      width: 100px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">      background-color: aquamarine;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="5，绘制和栅格化"><a href="#5，绘制和栅格化" class="headerlink" title="5，绘制和栅格化"></a>5，绘制和栅格化</h1><p>绘制对应的有指令，比如先指定坐标，画一个矩形，填充颜色。这些指令会生成一个绘制列表，交给<strong>合成线程</strong>绘制。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115305.png" width="450" />
+
+<p>因为浏览器的视口大小是固定的，但页面的内容可能会有很多，会出现滚动条。所以，不会一次性绘制出所有的内容。</p>
+<p>基于这个原因，<strong>合成线程会将图层划分为图块</strong>。图块的大小也不固定，可以在 Layer 标签中看到。</p>
+<p>合成线程会优先对视口附近的图块进行<strong>栅格化</strong>，也就是将图块绘制成位图。</p>
+<blockquote>
+<p>栅格化通常会用到 GPU，生成的位图也都在GPU的内存中。</p>
+</blockquote>
+<p>==注意==，上面所说的不会一次性绘制出所有的内容，是指不会在一个图块上绘制所有的内容。</p>
+<h1 id="6，合成展示"><a href="#6，合成展示" class="headerlink" title="6，合成展示"></a>6，合成展示</h1><p>当所有的图块都栅格化后，合成线程会生成一个绘制图块的命令——“DrawQuad”，并将该命令提交给浏览器进程。</p>
+<p>浏览器进程中的 viz 组件根据 DrawQuad 命令，将其页面内容绘制到内存中，最后再将内存显示在屏幕上。</p>
+<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115338.png" width="450" />
+
+<h1 id="7，其他问题"><a href="#7，其他问题" class="headerlink" title="7，其他问题"></a>7，其他问题</h1><h2 id="7-1，重绘重排"><a href="#7-1，重绘重排" class="headerlink" title="7.1，重绘重排"></a>7.1，重绘重排</h2><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115411.png" width="450" />
+
+<ul>
+<li>解析 DOM</li>
+<li>解析 CSS</li>
+<li>布局</li>
+<li>分层</li>
+<li>绘制</li>
+<li>合成展示<ul>
+<li>图块</li>
+<li>栅格化</li>
+<li>draw quad</li>
+<li>展示</li>
+</ul>
+</li>
+</ul>
+<p>1，修改了元素的几何属性，会触发重排等后面一系列操作。</p>
+<p>2，修改了颜色等，没有影响到几何属性时，会触发重绘等后面一系列操作。</p>
+<p>3，部分属性，比如 transform ，不会触发重绘重排。直接进入合成展示。</p>
+<p>所以，为了减少重绘重排</p>
+<ul>
+<li>使用 class，而不是频繁操作 style<blockquote>
+<p>如果添加多个样式，一个class，比多次 element.style 强的多。而且就算是一个样式，也保不准之后不会再添加新的样式。</p>
+</blockquote>
+</li>
+<li>批量 DOM 操作时，使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createDocumentFragment" target="_blank" rel="noopener">createDocumentFragment</a></li>
+<li>will-change: transform 可以强制使用 GPU<blockquote>
+<p>GPU是专为执行复杂的数学和几何计算而设计的，可以让CPU从图形处理的任务中解放出来，从而执行其他更多的系统任务，例如，页面的计算与重绘。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="7-2，阻塞问题"><a href="#7-2，阻塞问题" class="headerlink" title="7.2，阻塞问题"></a>7.2，阻塞问题</h2><p><a href="https://juejin.im/post/6844903667733118983" target="_blank" rel="noopener">参考</a></p>
+<p>1，js 文件下载和执行，会阻塞 DOM 树的解析。</p>
+<p>2，css 文件 和 js 文件会阻塞DOM树吗？</p>
+<ul>
+<li>css加载不会阻塞DOM树解析，但是会阻塞DOM树渲染。</li>
+</ul>
+<p>如果不阻塞渲染，可能会多次渲染。</p>
+<blockquote>
+<p>DOM解析和CSS解析是两个并行的进程</p>
+</blockquote>
+<ul>
+<li>css加载会阻塞后面的js语句的执行。</li>
+</ul>
+<p>因为可能后面的 js 会操作 CSS</p>
+]]></content>
+  </entry>
+  <entry>
     <title>内存管理</title>
     <url>/2020/04/24/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<p>js 依赖宿主浏览器的垃圾回收机制，内存的释放一般情况下不需要程序员关心。但某些情况下还是需要注意，否则会出现内存泄漏现象。</p>
@@ -821,221 +1159,5 @@
         <tag>事件监听</tag>
         <tag>内存泄露</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>reduce的使用和实现</title>
-    <url>/2020/05/08/reduce%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<p>这是 reduce</p>
-<p>typeof undefined 和直接判断 undefined 的区别，主要体现在如果变量未定义，</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typeof</span> crane === <span class="string">'undefined'</span> <span class="comment">// true</span></span><br><span class="line">crane === <span class="literal">undefined</span> <span class="comment">// 报错 crane is not defined</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>JavaScript 核心</category>
-      </categories>
-      <tags>
-        <tag>array</tag>
-        <tag>JavaScript 核心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>bind和call/apply的实现</title>
-    <url>/2020/05/11/bind%E5%92%8Ccall-apply%E7%9A%84%E5%AE%9E%E7%8E%B0/</url>
-    <content><![CDATA[<p>实现原理</p>
-<a id="more"></a>
-
-<p>本文是对 <a href="https://www.jianshu.com/p/6958f99db769" target="_blank" rel="noopener">从一道面试题，到“我可能看了假源码”</a> 这篇文章自己的理解和验证。</p>
-<h1 id="bind-实现"><a href="#bind-实现" class="headerlink" title="bind 实现"></a>bind 实现</h1><h2 id="bind-基础实现"><a href="#bind-基础实现" class="headerlink" title="bind 基础实现"></a>bind 基础实现</h2><p>不用做嗅探 <code>Function.prototype.bind = Function.prototype.bind || function(context) {}</code> ，因为现代浏览器都支持了。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bindFun = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> me = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> argsArr = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> me.apply(context, argsArr.slice(<span class="number">1</span>))</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>利用 <code>apply</code> 就可简单实现，不做赘述。</p>
-<h2 id="bind进阶实现1"><a href="#bind进阶实现1" class="headerlink" title="bind进阶实现1"></a>bind进阶实现1</h2><p>基础实现的问题之一，<strong>存在预置参数功能丢失</strong>，我们来验证一下：</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAge</span>(<span class="params">a = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="built_in">arguments</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.age + a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">  getAge: getAge</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> unbindFun = obj.getAge</span><br><span class="line"><span class="built_in">console</span>.log(unbindFun())</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> bindFun = unbindFun.bindFun(obj, <span class="number">3</span>)</span><br><span class="line"><span class="built_in">console</span>.log(bindFun(<span class="number">5</span>))</span><br></pre></td></tr></table></figure>
-
-<p>由下图可以看到，<code>bindFun(5)</code> 传递的参数丢失了：</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200511173016.png" width="450" />
-
-<p>对比正常情况：</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200511173339.png" width="450" />
-
-<p>更好的实现:</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bindFun = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> me = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> innerArgs = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="keyword">const</span> finalArgs = args.concat(innerArgs)</span><br><span class="line">    <span class="keyword">return</span> me.apply(context, finalArgs)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="bind-进阶实现2"><a href="#bind-进阶实现2" class="headerlink" title="bind 进阶实现2"></a>bind 进阶实现2</h2><p>基础实现的第2个问题：</p>
-<p>如果 bind 返回的函数，作为构造函数进行 new 调用，绑定的 this 应该被忽略。之前的 <a href="https://www.crane0.com/2020/04/20/this%E6%8C%87%E5%90%91/#more" target="_blank" rel="noopener">this指向</a> 文章有详细说明。</p>
-<p>实现的方式，通过原型继承的思想 <code>Child.prototype = new Parent()</code>，对这种情况做了兼容处理。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.bindFun = <span class="function"><span class="keyword">function</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> me = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> argsArr = <span class="built_in">Array</span>.prototype.slice(<span class="built_in">arguments</span>, <span class="number">1</span>)</span><br><span class="line">  <span class="keyword">const</span> F = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">  F.prototype = <span class="keyword">this</span>.prototype</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> bound = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> innerArgs = <span class="built_in">Array</span>.prototype.slice(<span class="built_in">arguments</span>)</span><br><span class="line">    <span class="keyword">const</span> finalArgs = argsArr.concat(innerArgs)</span><br><span class="line">    <span class="keyword">return</span> me.apply(<span class="keyword">this</span> <span class="keyword">instanceof</span> F ? <span class="keyword">this</span> : context || <span class="keyword">this</span>, finalArgs)</span><br><span class="line">  &#125;</span><br><span class="line">  bound.prototype = <span class="keyword">new</span> F()</span><br><span class="line">  <span class="keyword">return</span> bound</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="apply-实现"><a href="#apply-实现" class="headerlink" title="apply 实现"></a>apply 实现</h1><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">Function</span>.prototype.applyFun = <span class="function"><span class="keyword">function</span>(<span class="params">targetObject, argsArr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> targetObject === <span class="string">'undefined'</span> || targetObject === <span class="literal">null</span>) &#123;</span><br><span class="line">    targetObject = <span class="built_in">window</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> argsArr === <span class="string">'undefined'</span> || argsArr === <span class="literal">null</span>) &#123;</span><br><span class="line">    argsArr = []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  targetObject = <span class="keyword">new</span> <span class="built_in">Object</span>(targetObject)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 为了不和 targetObject 中原有的属性重合，否则会把原有的属性重写。</span></span><br><span class="line">  <span class="comment">// 所以随便指定一个合理的属性名即可，只要保证不和原有的属性重合即可。</span></span><br><span class="line">  <span class="keyword">const</span> tempKey = <span class="built_in">Symbol</span>()</span><br><span class="line">  targetObject[tempKey] = <span class="keyword">this</span></span><br><span class="line">  <span class="keyword">const</span> ret = targetObject[tempKey](...argsArr)</span><br><span class="line">  <span class="keyword">delete</span> targetObject[tempKey]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> ret</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实现的原理，利用的 <a href="https://www.crane0.com/2020/04/20/this%E6%8C%87%E5%90%91/#more" target="_blank" rel="noopener">this的隐式丢失</a></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getAge</span>(<span class="params">a = <span class="number">0</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">this</span>.age + a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  age: <span class="number">42</span>,</span><br><span class="line">  getAge: getAge</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> foo = obj.getAge</span><br><span class="line">foo() <span class="comment">// this 已经指向 window</span></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>JavaScript 核心</category>
-      </categories>
-      <tags>
-        <tag>bind</tag>
-        <tag>call</tag>
-        <tag>apply</tag>
-        <tag>继承</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>scrollIntoView的问题</title>
-    <url>/2020/05/20/scrollIntoView%E7%9A%84%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>记录 <code>scrollIntoView</code> 在微信浏览器环境下，与谷歌浏览器不一致的行为。</p>
-<a id="more"></a>
-
-<h1 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h1><p>之前（在 <code>scrollIntoView</code> 兼容性较差时），在页面中要实现点击某个位置，滚动到页面的其他位置可以这样做：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span> <span class="attr">id</span>=<span class="string">"anchor"</span>&gt;</span>这是要跳转的锚点<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#anchor"</span>&gt;</span>点击跳转<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>另外，如果要回到页面顶部</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>回到顶部<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="scrollIntoView"><a href="#scrollIntoView" class="headerlink" title="scrollIntoView"></a>scrollIntoView</h1><p>上面的方式，在滚动时没有任何过渡效果。</p>
-<p>添加如下 css ，就可以实现平滑滚动：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">html</span>, <span class="selector-tag">body</span> &#123; <span class="attribute">scroll-behavior</span>:smooth; &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种 css 的方式，也有对应的 js 形式，</p>
-<p>调用下面的方法，就会从页面的任意位置<strong>平滑</strong>滚动到 id = <code>#anchor</code> 的元素位置处。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toAnchor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> anchor = <span class="built_in">document</span>.querySelector(<span class="string">'#anchor'</span>)</span><br><span class="line">  anchor.scrollIntoView(&#123; <span class="attr">behavior</span>: <span class="string">'smooth'</span>, <span class="attr">block</span>: <span class="string">'start'</span> &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
-<li><p>参数 <code>block: &#39;start&#39;</code> 其实是默认值（<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView" target="_blank" rel="noopener">参考MDN</a>）， 但如果不写，在微信浏览器中，滚动的距离会变长，不会符合预期。</p>
-</li>
-<li><p>无论是 css 的形式，还是 js 的形式，Safari 浏览器都不支持。</p>
-</li>
-</ol>
-<blockquote>
-<p>可以滚动到指定的位置，但没有平滑的效果。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>工作遇到的小问题</category>
-      </categories>
-      <tags>
-        <tag>微信</tag>
-        <tag>scrollIntoView</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>资源的渲染</title>
-    <url>/2020/09/07/%E8%B5%84%E6%BA%90%E7%9A%84%E6%B8%B2%E6%9F%93/</url>
-    <content><![CDATA[<p>简单介绍浏览器如何渲染 html, css, js</p>
-<a id="more"></a>
-
-<h1 id="1，构建DOM树"><a href="#1，构建DOM树" class="headerlink" title="1，构建DOM树"></a>1，构建DOM树</h1><p>HTML解析器，会将 HTML 解析为 DOM 树，浏览器才能识别。</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115024.png" width="450" />
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span></span><br></pre></td></tr></table></figure>
-
-<p>DOM 树，是保存在内存中树状结构，通过 JavaScript 来查询或修改其内容。</p>
-<h1 id="2，样式计算"><a href="#2，样式计算" class="headerlink" title="2，样式计算"></a>2，样式计算</h1><h2 id="2-1，解析-CSS-文本"><a href="#2-1，解析-CSS-文本" class="headerlink" title="2.1，解析 CSS 文本"></a>2.1，解析 CSS 文本</h2><p>CSS 来源：</p>
-<ul>
-<li>link</li>
-<li>style 标签</li>
-<li>内联样式</li>
-</ul>
-<p>渲染引擎会将 link 和 style 标签的 cssText 解析放入 styleSheets，内联样式放入 CSSStyleDeclaration</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">document</span>.styleSheets</span><br><span class="line"></span><br><span class="line">element.style</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>最终，可以通过 <code>window.getComputedStyle()</code> 获取所有的 CSS属性。</p>
-</blockquote>
-<h2 id="2-2，属性值标准化"><a href="#2-2，属性值标准化" class="headerlink" title="2.2，属性值标准化"></a>2.2，属性值标准化</h2><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115129.png" width="450" />
-
-<p>虽然在浏览器中查看时，还是原来的属性值，但浏览器渲染时用的都是标准化的属性值。</p>
-<h2 id="2-3，计算-DOM-树中每个节点的样式"><a href="#2-3，计算-DOM-树中每个节点的样式" class="headerlink" title="2.3，计算 DOM 树中每个节点的样式"></a>2.3，计算 DOM 树中每个节点的样式</h2><p>这里涉及样式继承，优先级（来源）等问题，不做考虑。</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115205.png" width="450" />
-
-<h1 id="3，布局"><a href="#3，布局" class="headerlink" title="3，布局"></a>3，布局</h1><p>计算出 DOM 树中可见元素的几何位置。</p>
-<p>DOM 树中，有的标签是不展示的</p>
-<ul>
-<li>head</li>
-<li>display: none 的元素</li>
-</ul>
-<p>所以，还得有一个 <strong>布局（渲染）树</strong></p>
-<blockquote>
-<p>相对于DOM 树，就是去掉了不展示的标签。</p>
-</blockquote>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115229.png" width="450" />
-
-<h1 id="4，分层"><a href="#4，分层" class="headerlink" title="4，分层"></a>4，分层</h1><p>浏览器的页面实际上会被分成很多个图层，这些图层叠加后合成了最终的页面。（和 PS 中差不多）</p>
-<p>页面中会有很多复杂的效果，3D 变换，甚至页面滚动等。渲染引擎会为这些特定的节点，生成专用的图层，并生成一棵图层树（LayerTree）</p>
-<p><strong>chrome 的 Layer标签</strong> 可以看到图层最终的分层效果。</p>
-<h2 id="4-1，如何分层？"><a href="#4-1，如何分层？" class="headerlink" title="4.1，如何分层？"></a>4.1，如何分层？</h2><ol>
-<li>拥有<a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Understanding_z_index/The_stacking_context" target="_blank" rel="noopener">层叠上下文</a>属性的元素会被提升为单独的一层。<br>但经测试，只有下面的会被分层</li>
-</ol>
-<ul>
-<li>transform: translateY 和 Z，X不会。</li>
-<li>transform: rotate 相关</li>
-<li>filter: blur(5px);</li>
-<li>will-change: transform;</li>
-</ul>
-<ol start="2">
-<li>滚动条是单独一层。</li>
-<li>需要剪裁（clip）的地方也会被创建为图层。</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="css">    <span class="selector-class">.text</span> &#123;</span></span><br><span class="line">      width: 100px;</span><br><span class="line">      height: 200px;</span><br><span class="line">      overflow: auto;</span><br><span class="line">      background-color: aquamarine;</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">    飞跃那辽阔碧海蓝天，飞向那温暖的春天。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="5，绘制和栅格化"><a href="#5，绘制和栅格化" class="headerlink" title="5，绘制和栅格化"></a>5，绘制和栅格化</h1><p>绘制对应的有指令，比如先指定坐标，画一个矩形，填充颜色。这些指令会生成一个绘制列表，交给<strong>合成线程</strong>绘制。</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115305.png" width="450" />
-
-<p>因为浏览器的视口大小是固定的，但页面的内容可能会有很多，会出现滚动条。所以，不会一次性绘制出所有的内容。</p>
-<p>基于这个原因，<strong>合成线程会将图层划分为图块</strong>。图块的大小也不固定，可以在 Layer 标签中看到。</p>
-<p>合成线程会优先对视口附近的图块进行<strong>栅格化</strong>，也就是将图块绘制成位图。</p>
-<blockquote>
-<p>栅格化通常会用到 GPU，生成的位图也都在GPU的内存中。</p>
-</blockquote>
-<p>==注意==，上面所说的不会一次性绘制出所有的内容，是指不会在一个图块上绘制所有的内容。</p>
-<h1 id="6，合成展示"><a href="#6，合成展示" class="headerlink" title="6，合成展示"></a>6，合成展示</h1><p>当所有的图块都栅格化后，合成线程会生成一个绘制图块的命令——“DrawQuad”，并将该命令提交给浏览器进程。</p>
-<p>浏览器进程中的 viz 组件根据 DrawQuad 命令，将其页面内容绘制到内存中，最后再将内存显示在屏幕上。</p>
-<img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115338.png" width="450" />
-
-<h1 id="7，其他问题"><a href="#7，其他问题" class="headerlink" title="7，其他问题"></a>7，其他问题</h1><h2 id="7-1，重绘重排"><a href="#7-1，重绘重排" class="headerlink" title="7.1，重绘重排"></a>7.1，重绘重排</h2><img src="https://crane0.oss-cn-beijing.aliyuncs.com/hexo-blog/20200907115411.png" width="450" />
-
-<ul>
-<li>解析 DOM</li>
-<li>解析 CSS</li>
-<li>布局</li>
-<li>分层</li>
-<li>绘制</li>
-<li>合成展示<ul>
-<li>图块</li>
-<li>栅格化</li>
-<li>draw quad</li>
-<li>展示</li>
-</ul>
-</li>
-</ul>
-<p>1，修改了元素的几何属性，会触发重排等后面一系列操作。</p>
-<p>2，修改了颜色等，没有影响到几何属性时，会触发重绘等后面一系列操作。</p>
-<p>3，部分属性，比如 transform ，不会触发重绘重排。直接进入合成展示。</p>
-<p>所以，为了减少重绘重排</p>
-<ul>
-<li>使用 class，而不是频繁操作 style<blockquote>
-<p>如果添加多个样式，一个class，比多次 element.style 强的多。而且就算是一个样式，也保不准之后不会再添加新的样式。</p>
-</blockquote>
-</li>
-<li>批量 DOM 操作时，使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createDocumentFragment" target="_blank" rel="noopener">createDocumentFragment</a></li>
-<li>will-change: transform 可以强制使用 GPU<blockquote>
-<p>GPU是专为执行复杂的数学和几何计算而设计的，可以让CPU从图形处理的任务中解放出来，从而执行其他更多的系统任务，例如，页面的计算与重绘。</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="7-2，阻塞问题"><a href="#7-2，阻塞问题" class="headerlink" title="7.2，阻塞问题"></a>7.2，阻塞问题</h2><p><a href="https://juejin.im/post/6844903667733118983" target="_blank" rel="noopener">参考</a></p>
-<p>1，js 文件下载和执行，会阻塞 DOM 树的解析。</p>
-<p>2，css 文件 和 js 文件会阻塞DOM树吗？</p>
-<ul>
-<li>css加载不会阻塞DOM树解析，但是会阻塞DOM树渲染。</li>
-</ul>
-<p>如果不阻塞渲染，可能会多次渲染。</p>
-<blockquote>
-<p>DOM解析和CSS解析是两个并行的进程</p>
-</blockquote>
-<ul>
-<li>css加载会阻塞后面的js语句的执行。</li>
-</ul>
-<p>因为可能后面的 js 会操作 CSS</p>
-]]></content>
   </entry>
 </search>
