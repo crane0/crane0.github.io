@@ -1183,4 +1183,34 @@
         <tag>hexo</tag>
       </tags>
   </entry>
+  <entry>
+    <title>hexo常用命令</title>
+    <url>/2021/10/29/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<p>hexo+next建站，常见问题汇总</p>
+<a id="more"></a>
+
+<p>1，创建文章</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo n [filename]</span><br></pre></td></tr></table></figure>
+
+<p>2，本地预览</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+
+<p>3，上传git（发布）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>4，先创建草稿，不发布这篇。（一次写2篇，只发布一篇）</p>
+<p>创建草稿文件夹，<code>/source/_drafts</code>，并创建一篇草稿。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo n draft [draftname]</span><br></pre></td></tr></table></figure>
+
+<p>编辑完草稿，想发布了，需要先放到 <code>_posts</code> 文件夹下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo publish [draftname]</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>hexo建站</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>
