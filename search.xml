@@ -1160,4 +1160,27 @@
         <tag>内存泄露</tag>
       </tags>
   </entry>
+  <entry>
+    <title>hexo添加备案号</title>
+    <url>/2021/10/29/%E6%B7%BB%E5%8A%A0%E5%A4%87%E6%A1%88%E5%8F%B7/</url>
+    <content><![CDATA[<p>hexo如何在底部添加备案号</p>
+<a id="more"></a>
+
+<h1 id="1，先确定自己使用的hexo主题"><a href="#1，先确定自己使用的hexo主题" class="headerlink" title="1，先确定自己使用的hexo主题"></a>1，先确定自己使用的hexo主题</h1><p>可以在根目录下的 <code>_config.yml</code> 文件中搜索 <code>theme</code> 就可以找到使用的主题。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">theme: next-reloaded</span><br></pre></td></tr></table></figure>
+
+<h1 id="2，在目标主题的配置文件-config-yml-下设置备案号"><a href="#2，在目标主题的配置文件-config-yml-下设置备案号" class="headerlink" title="2，在目标主题的配置文件 _config.yml 下设置备案号"></a>2，在目标主题的配置文件 <code>_config.yml</code> 下设置<strong>备案号</strong></h1><p>主题配置文件的目录： <code>themes/next-reloaded/_config.yml</code> 中搜索 <code>beian</code>，接着设置 <code>icp</code> 字段即可。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># Beian ICP and gongan information for Chinese users. See: http:&#x2F;&#x2F;www.beian.miit.gov.cn, http:&#x2F;&#x2F;www.beian.gov.cn</span><br><span class="line">beian:</span><br><span class="line">  enable: true</span><br><span class="line">  icp: 京ICP备19054583号</span><br><span class="line">  # The digit in the num of gongan beian.</span><br><span class="line">  gongan_id: </span><br><span class="line">  # The full num of gongan beian.</span><br><span class="line">  gongan_num:</span><br><span class="line">  # The icon for gongan beian. See: http:&#x2F;&#x2F;www.beian.gov.cn&#x2F;portal&#x2F;download</span><br><span class="line">  gongan_icon_url:</span><br></pre></td></tr></table></figure>
+
+<p>另外，因为备案号需链接至工信部首页。（工信部链接<a href="https://beian.miit.gov.cn/）" target="_blank" rel="noopener">https://beian.miit.gov.cn/）</a></p>
+<p>但有的老的主题配置中，默认的工信部链接中添加了 www，所以要修改默认的工信部链接。</p>
+<h1 id="3，修改默认的工信部链接。"><a href="#3，修改默认的工信部链接。" class="headerlink" title="3，修改默认的工信部链接。"></a>3，修改默认的工信部链接。</h1><p>在这个文件<code>themes/next-reloaded/layout/_partials/footer.swig</code>中将<code>http://www.beian.miit.gov.cn</code>的 www 去掉即可。</p>
+]]></content>
+      <categories>
+        <category>hexo建站</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
 </search>
